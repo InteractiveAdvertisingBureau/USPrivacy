@@ -164,7 +164,7 @@ A Digital Property has determined to use a U.S. Privacy string and that CCPA app
 A URL-based service that requires U.S. Privacy signals should accept U.S. Privacy string
 according to the following URL parameter specification. A creator of a URL should ensure that the `us_privacy` URL parameter exists only once in the URL, and the URL-based service accepting the request is capable of interpreting a U.S. Privacy string and propagating it to other services.
 
-| URL parameter | Possible values | Default | Description |
+| URL Parameter | Possible Values | Default | Description |
 |:--|:--|:--|:--|
 | us_privacy | string | N/A | URL-encoded U.S. Privacy string format as specified above. |
  
