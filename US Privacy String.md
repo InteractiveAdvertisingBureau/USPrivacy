@@ -23,6 +23,7 @@
 
 | Date | Version | Comments |
 | :-- | :-- | :-- |
+| February 2020 | 1.0 | Clarification on accepted uses of "-". |
 | November 2019 | 1.0 | Published final public version. Added support for Limited Service Provider Agreement (LSPA) signal. |
 | October 2019 | 1.0 | Draft for public comment. Version 1 ONLY supports CCPA compliance. |
 
@@ -128,10 +129,7 @@ The U.S. Privacy string consists of the following components.
 | LSPA | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable)</p> | Publisher is a signatory to the IAB Limited Service Provider Agreement(LSPA) and the publisher declares that the transaction is covered as a “Covered Opt Out Transaction” or a “Non Opt Out Transaction” as those terms are defined in the Agreement. |
 
 
-In situations where the Digital Property has determined that the consumer does not fall within a
-U.S. Privacy jurisdiction (e.g. CCPA), the Digital Property may signal this with hyphens in the
-second through fourth character positions in the following manner: “1---”. Otherwise, when
-signals are present, the consumer falls within a U.S. Privacy jurisdiction.
+In situations where the Digital Property has determined that the consumer does not fall within a U.S. Privacy jurisdiction (e.g. CCPA), the Digital Property may signal this with hyphens in the second through fourth character positions in the following manner: “1---”. Otherwise, when signals are present, the consumer falls within a U.S. Privacy jurisdiction. The “-” character may also be used to signal an unknown state in the second (Explicit Notice) and fourth (Support for LSPA) character positions. It should be noted that Opt-Out of Sale may never be unknown.
 
 ### Examples
 
@@ -155,6 +153,11 @@ A Digital Property has determined to use a U.S. Privacy string version 1 and tha
 not apply to the transaction.
 
 **1---**
+
+A Digital Property has determined to use a U.S. Privacy string and that CCPA applies to the transaction and has asked their vendor to create the string on their behalf. The Digital Property is using version 1 of the U.S. Privacy string specification. It is unknown if the Digital Property provided explicit user notice. The user has made a choice to opt out of sale. It is unknown if the Digital Property intends the transaction to operate within the Limited Service Provider Agreement.
+
+**1-Y-**
+
 
 ### URL Parameters
 
