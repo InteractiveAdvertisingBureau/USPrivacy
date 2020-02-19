@@ -15,7 +15,7 @@
 - [What information is stored in a U.S. Privacy String?](#what-information-is-stored-in-a-us-privacy-string)
 - [Who should create a U.S. Privacy string?](#who-should-create-a-us-privacy-string)
 - [When should a U.S. Privacy string be created?](#when-should-a-us-privacy-string-be-created)
-- [U.S. Privacy String](#us-privacy-string)
+- [U.S. Privacy String Format](#us-privacy-string-format)
   - [Examples](#examples)
 - [URL Parameters](#url-parameters)
 
@@ -116,7 +116,7 @@ Digital Property Owners are responsible for generating, persisting, and passing 
 
 When a sale of data may occur, for example on an impression opportunity, the string should be created. A string can be created to indicate CCPA applies, or to signal the Digital Property owner has determined that CCPA does not apply.
 
-### U.S. Privacy String
+### U.S. Privacy String Format
 
 The U.S. Privacy string consists of the following components.
 
