@@ -91,7 +91,7 @@ Publish an OpenRTB Advisory defining a new attribute “us_privacy” within the
 
 | Field | Scope | Type | Default | Description |
 | :-- | :-- | :-- |:-- |:-- |
-| us_privacy | **optional** | string | - | Must follow the [U.S. Privacy string format](https://github.com/wittjill/USPrivacy/blob/master/US%20Privacy%20String.md). |
+| us_privacy | **optional** | string | - | Must follow the [U.S. Privacy string format](https://github.com/wittjill/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md). |
    
 
 
@@ -136,4 +136,5 @@ A Digital Property has determined that U.S. Privacy does not apply to the transa
 ### Notes
 
 **URL Parameters**
-This extension does not cover use cases where a service requires U.S. Privacy signals but cannot access the OpenRTB bid request. Details for URL-based services that require U.S. Privacy signals can be found in the [U.S. Privacy string](https://github.com/wittjill/USPrivacy/blob/master/US%20Privacy%20String.md) specification.
+
+This extension does not cover use cases where a service requires U.S. Privacy signals but cannot access the OpenRTB bid request. Details for URL-based services that require U.S. Privacy signals can be found in the [U.S. Privacy string](https://github.com/wittjill/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md) specification.
