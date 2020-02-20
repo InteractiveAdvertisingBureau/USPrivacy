@@ -106,7 +106,7 @@ This current version of the U.S. Privacy String only supports CCPA Compliance. T
 1. **General metadata:** the version of this string specification.
 2. **Explicit Notice and Opportunity to Opt-Out of Sale of Data**
 3. **Opt-Out of Sale:** Whether the consumer has opted out of sale of their personal data
-4. **Support for Limited Service Provider Agreement**
+4. **Limited Service Provider Agreement Covered Transaction** Whether a specific transaction is covered by the LSPA
 
 ## Who should create a U.S. Privacy string?
 
@@ -128,7 +128,7 @@ The U.S. Privacy string consists of the following components.
 | LSPA Covered Transaction | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable)</p> | Publisher is a signatory to the IAB Limited Service Provider Agreement(LSPA) and the publisher declares that the transaction is covered as a “Covered Opt Out Transaction” or a “Non Opt Out Transaction” as those terms are defined in the Agreement. |
 
 
-In situations where the Digital Property has determined that the consumer does not fall within a U.S. Privacy jurisdiction (e.g. CCPA), the Digital Property may signal this with hyphens in the second through fourth character positions in the following manner: “1---”. Otherwise, when signals are present, the consumer falls within a U.S. Privacy jurisdiction. The “-” character may also be used to signal an unknown state in the second (Explicit Notice) and fourth (Support for LSPA) character positions. It should be noted that Opt-Out of Sale may never be unknown.
+In situations where the Digital Property has determined that the consumer does not fall within a U.S. Privacy jurisdiction (e.g. CCPA), the Digital Property may signal this with hyphens in the second through fourth character positions in the following manner: “1---”. Otherwise, when signals are present, the consumer falls within a U.S. Privacy jurisdiction. The “-” character may also be used to signal an unknown state in the second (Explicit Notice) and fourth (LSPA Covered Transaction) character positions. It should be noted that Opt-Out of Sale may never be unknown.
 
 ### Examples
 
