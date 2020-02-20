@@ -5,7 +5,7 @@
 
 
 
-*Table of Contents**
+**Table of Contents**
 - [Version History](#version-history)
 - [Introduction](#introduction)
   - [License](#license)
