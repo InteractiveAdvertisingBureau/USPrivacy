@@ -116,11 +116,11 @@ The Digital Property is responsible for storing the string. It’s recommended t
 
 The following API function can be provided;
 
-**__uspapi(Command, Version, Callback)**
+**`__uspapi(Command, Version, Callback)`**
 
-__uspapi() **must always be a function** at all times, even at initialization – the API must be able to handle calls at all times.
+`__uspapi()` **must always be a function** at all times, even at initialization – the API must be able to handle calls at all times.
 
-Secondarily, the implementation must provide a proxy for postMessage events targeted to the __uspapi interface sent from within nested iframes. See guidance in this specification [here](#how-can-vendors-that-use-iframes-call-the-API-from-an-iframe).
+Secondarily, the implementation must provide a proxy for postMessage events targeted to the `__uspapi` interface sent from within nested iframes. See guidance in this specification [here](#how-can-vendors-that-use-iframes-call-the-API-from-an-iframe).
 
 At the minimum, the implementation must support the following API commands:
 `'getUSPData'`.
@@ -181,43 +181,43 @@ Here is the list of the key value pairs provided:
 
 ## How can vendors that use iframes call the API from an iframe?
 
-There are two ways to request the US Privacy String from a parent or ancestor’s frame: Via
-SafeFrames and without SafeFrames, using postMessage.
+There are two ways to request the US Privacy String from a parent or ancestor’s frame: Via SafeFrames and without SafeFrames, using postMessage.
 
 ### Via SafeFrames
 
-When SafeFrames are used to proxy API requests no changes are required for the USP API or the vendor. SafeFrame implementations should either allow post messages or implement a proxy __uspapi() interface for a caller script within a sandbox that would otherwise be blocked. This proxy interface internally uses the SafeFrame messaging protocol to interface with the full implementation of the API on the publisher's top frame and proxies responses back to the sandboxed caller. If allowing postMessage, vendors will not be required to accommodate any special protocols; they will simply use the postMessage method without SafeFrame. 
+When SafeFrames are used to proxy API requests no changes are required for the USP API or the vendor. SafeFrame implementations should either allow post messages or implement a proxy `__uspapi()` interface for a caller script within a sandbox that would otherwise be blocked. This proxy interface internally uses the SafeFrame messaging protocol to interface with the full implementation of the API on the publisher's top frame and proxies responses back to the sandboxed caller. If allowing postMessage, vendors will not be required to accommodate any special protocols; they will simply use the postMessage method without SafeFrame. 
 
-If not allowing or blocking postMessage and therefore implementing the proxy method, vendors will see a local- to- the- sandboxed- iframe- scope __uspapi() proxy method that must behave the same as the asynchronous __uspapi() full implementation method on the main publisher’s top frame.
+If not allowing or blocking postMessage and therefore implementing the proxy method, vendors will see a local- to- the- sandboxed- iframe- scope `__uspapi()` proxy method that must behave the same as the asynchronous `__uspapi()` full implementation method on the main publisher’s top frame.
 
 ### Without SafeFrames, using postMessage
 
-The [pwindow.postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) method may be used from a child iframe to make requests send calls to from a parent's (or any ancestor's) frame's API. To locate an ancestor frame capable of responding to postMessage() API calls search for an ancestor frame that has a child frame named '__uspapiLocator'.
+The [pwindow.postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) method may be used from a child iframe to make requests send calls to from a parent's (or any ancestor's) frame's API. To locate an ancestor frame capable of responding to postMessage() API calls search for an ancestor frame that has a child frame named `'__uspapiLocator'`.
 
 **Sent Message**
-The sent message should follow the form outlined below. The _command,parameter_ and _version_ object properties correspond to their namesake parameters defined as method argument parameters for the __uspapi() method. The “sent message” also requires a unique _callId_ property to help match the request with a response.
+The sent message should follow the form outlined below. The _command,parameter_ and _version_ object properties correspond to their namesake parameters defined as method argument parameters for the `__uspapi()` method. The “sent message” also requires a unique _callId_ property to help match the request with a response.
 
-```
+```javascript
 {
-__uspapiCall:
-{
-command: " command ",
-parameter:  parameter,
-version : version,
-callId: uniqueId
-}
+ __uspapiCall:
+ {
+ command: " command ",
+ parameter:  parameter,
+ version : version,
+ callId: uniqueId
+ }
 }
 ```
 
-The returned message shall follow the form outlined below. The _returnValue_ object property shall be the corresponding US Privacy String object for the _command_ used upon sending the “sent message”. The success object property shall reflect the _ __uspapi()_ success callback argument and the _callId_ will correspond to the “sent message” unique id passed in the _callId_ property.
+The returned message shall follow the form outlined below. The _returnValue_ object property shall be the corresponding US Privacy String object for the _command_ used upon sending the “sent message”. The success object property shall reflect 
+the `__uspapi()` success callback argument and the _callId_ will correspond to the “sent message” unique id passed in the _callId_ property.
 
-```
+```javascript
 {
-__uspapiReturn:
-{
-returnValue: _returnValue_ ,
-success: _boolean_ ,
-callId: _uniqueId_
-}
+ __uspapiReturn:
+ {
+ returnValue: returnValue,
+ success: boolean,
+ callId: uniqueId
+ }
 }
 ```
