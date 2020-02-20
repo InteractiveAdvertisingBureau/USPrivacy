@@ -45,7 +45,6 @@ data.
 
 The string data format enables standard persistent storage of user’s preferences by Digital
 Property Owners and supports transport of that data to relevant parties.
-[iabtechlab.com/ccpa](https://iabtechlab.com/ccpa) 
 
 
 ### License
@@ -78,7 +77,7 @@ FOR COMPLIANCE WITH THE SAME.
 About IAB Technology Laboratory
 The IAB Technology Laboratory (Tech Lab) is a non-profit consortium that engages a member
 community globally to develop foundational technology and standards that enable growth and
-trust in the digital media ecosystem.. Comprised of digital publishers, ad technology firms,
+trust in the digital media ecosystem. Comprised of digital publishers, ad technology firms,
 agencies, marketers, and other member companies, IAB Tech Lab focuses on improving the
 digital advertising supply chain, measurement, and consumer experiences, while promoting
 responsible use of data. Its work includes the OpenRTB real-time bidding protocol, ads.txt
@@ -87,11 +86,11 @@ specification, and DigiTrust identity service. Board members include ExtremeReac
 Google, GroupM, Hearst Digital Media, Index Exchange, Integral Ad Science, LinkedIn,
 LiveRamp, MediaMath, Microsoft, Oracle Data Cloud, Pandora, PubMatic, Quantcast, Rakuten
 Marketing, Telaria, The Trade Desk, Verizon Media Group, Xandr, and Yahoo! Japan.
-[iabtechlab.com/ccpa](https://iabtechlab.com/ccpa)
 
 
 Established in 2014, the IAB Tech Lab is headquartered in New York City with staff in San
 Francisco, Seattle, and London. Learn more at https://www.iabtechlab.com.
+
 
 ### About IAB CCPA Compliance Framework
 
