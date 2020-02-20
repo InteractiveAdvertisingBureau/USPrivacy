@@ -6,22 +6,22 @@
 
 
 **Table of Contents**
-- Version History
-- Introduction
-  - License
-  - Disclaimer
-  - About IAB Tech Lab
-  - About IAB CCPA Compliance Framework
-- Requirements for U.S. Privacy User Signal API
-- What are you required to support?
-- What baseline functionality is required?
-- Where should the string be stored?
-- How is the API exposed?
-- getUSPData
-- In-app support
-- How can vendors that use iframes call the API from an iframe?
-  - Via SafeFrames
-  - Without SafeFrames, using postMessage
+- [Version History](#version-history)
+- [Introduction](#introduction)
+  - [License](#license)
+  - [Disclaimer](#disclaimer)
+  - [About IAB Tech Lab](#about-iab-tech-lab)
+  - [About IAB CCPA Compliance Framework](#about-iab-ccpa-compliance-framework)
+- [Requirements for U.S. Privacy User Signal API](#requirements-for-us-privacy-user-signal-api)
+- [What are you required to support?](#what-are-you-required-to-support)
+- [What baseline functionality is required?](#what-baseline-functionality-is-required)
+- [Where should the string be stored?](#where-should-the-string-be-stored)
+- [How is the API exposed?](#how-is-the-api-exposed)
+- [getUSPData](#getuspdata)
+- [In-app support](#in-app-support)
+- [How can vendors that use iframes call the API from an iframe?](#how-can-vendors-that-use-iframes-call-the-api-from-an-iframe)
+  - [Via SafeFrames](#via-safeframes)
+  - [Without SafeFrames, using postMessage](#without-safeframes-using-postmessage)
 
 
 ## Version History:
