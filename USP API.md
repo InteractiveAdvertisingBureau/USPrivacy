@@ -28,6 +28,7 @@
 
 | Date | Version | Comments |
 | :-- | :-- | :-- |
+| February 2020 | 1.0 | Fixed error in uspData Object example and description |
 | November 20, 2019 | 1.0 | Fixed error referencing in-app key. Correct key is “IABUSPrivacy_String” |
 | November 18, 2019 | 1.0 | Published final public version. Added SafeFrame, iFrame support. |
 | October 2019 | 1.0 | Draft for public comment. Version 1 ONLY supports CCPA compliance. |
@@ -149,7 +150,7 @@ If U.S. Privacy does not apply to this user in this context then the string in u
 
 The callback shall be called immediately and without any asynchronous logic with whatever information is available in the current state of the library.
 
-A value of `false` will be passed as the argument to the `success` callback when no uspData
+A value of `false` will be passed as the value to the `success` argument to the callback when no uspData
 object could be returned.
 
 The `callback` shall be invoked only once per api call with this command.
@@ -160,7 +161,6 @@ uspData Object
 "version": 1, /* number indicating the U.S. Privacy spec
 version */
 "uspString": "1YNN" /* string; not applicable: “1---” */
-/* number; 1 applies, 0 doesn’t apply, -1 not set */
 }
 ```
 
