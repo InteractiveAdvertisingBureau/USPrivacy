@@ -1,7 +1,7 @@
 ![iab tech lab](https://user-images.githubusercontent.com/19175352/38649177-0d37d17c-3daa-11e8-8934-f0fb47919716.png)
 # OpenRTB Extension for U.S. Privacy
 ### **(For CCPA Compliance)**
-**Final Version 1 | November 20, 2019**
+**Final Version 1 | March 2020**
 
 
 
@@ -21,21 +21,20 @@
 
 | Date | Version | Comments |
 | :-- | :-- | :-- |
-| February 2020 | 1.0 | Added final bracket in example |
+| February 2020 | 1.0 | Added final bracket in example and final wording edits |
 | November 18, 2019 | 1.0 | Published final public version. |
 | October 2019 | 1.0 | Draft for public comment. Version 1 ONLY supports CCPA compliance. |
 
 
 ## Introduction
 
-For support of the IAB CCPA Compliance Framework, this document specifies how to pass information pertaining to CCPA within OpenRTB. This document outlines a mechanism to support communication of U.S. Privacy signals within the scope of CCPA compliance. This document is the work product of the IAB Tech Lab’s CCPA/U.S. Privacy Technical Working Group, and reviewed by members of IAB Tech Lab’s OpenRTB Working Group. Policy requirements were developed by a legal affairs group at IAB in the US.
+This document specifies how to pass the IAB US Privacy String using OpenRTB, compatible with OpenRTB versions 2.X and 3.0.
 
-Participants in Real Time Bidding need to know when personal data in the bid request is subject to U.S. Privacy rule. Digital Properties and intermediaries need a way to pass on U.S. Privacy signals through the current RTB ecosystem.
+When using OpenRTB, bidders need to know whether personal data in a bid request is subject to the California Consumer Privacy Act (CCPA) so they can respond accordingly.  IAB Tech Lab developed the US Privacy String to store privacy and choice signals in compliance with CCPA. This document outlines how to communicate those signals using OpenRTB.
 
-This document proposes that bid requests shall optionally include U.S. Privacy transparency and choice signals representing the relationship and status between a consumer and the Digital Property.
+The solution involves adding an attribute to a nested extension object in OpenRTB. To successfully communicate signals in the US Privacy String, the new attribute must be implemented correctly and bidders must know how to find, read, and respond within the guidelines of the US Privacy String and any applicable governance. 
 
-As an extension object, this extension could be used with version 2.X or 3.0 of the IAB Tech Lab’s OpenRTB protocol.
-
+The OpenRTB Extension for US Privacy was developed by IAB Tech Lab’s CCPA/US Privacy Technical working group and reviewed by IAB Tech Lab’s OpenRTB Working Group. 
 
 ### License
 
@@ -86,7 +85,7 @@ More information about the Framework is available at [iab.com/guidelines/ccpa-fr
 
 ## Extension Object: us_privacy attribute
 
-Publish an OpenRTB Advisory defining a new attribute “us_privacy” within the BidRequest object, through which the Digital Property, or its ad technology vendor, may define the regulatory context governing personal data contained within the bid request and any subsequent related transactions. For OpenRTB v2.2+, the “us_privacy” attribute should be added into the “ext” object within the “Regs” object. For OpenRTB v2.0-2.1, the “us_privacy” attribute can be added into the “ext” object within the “User” object.
+The signals in a US Privacy string can be communicated in OpenRTB bid requests using “ext” objects.  In versions 2.2 and newer, use the “ext” object nested within the “Regs” object. In versions 2.0-2.1, use the “ext” object nested within the “User” object. 
 
 
 | Field | Scope | Type | Default | Description |
@@ -96,8 +95,13 @@ Publish an OpenRTB Advisory defining a new attribute “us_privacy” within the
 
 
 ### Examples:
+The following examples provide sample code with a US Privacy String that meets the conditions described in each case.
 
-A Digital Property has determined that U.S. Privacy applies to the transaction. The Digital Property is using version 1 of the U.S. Privacy string specification. The Digital Property has provided explicit user notice. The user has not made a choice to opt out of sale.
+A Digital Property has determined that U.S. Privacy applies to the transaction.
+* The Digital Property is using version 1 of the U.S. Privacy string specification. (1)
+* The Digital Property has provided explicit user notice. (Y)
+* The user has not made a choice to opt out of sale. (N)
+* The transaction is not intended to operate within the IAB Limited Service Agreement. (N)
 
 ```
 {
@@ -109,7 +113,11 @@ A Digital Property has determined that U.S. Privacy applies to the transaction. 
 }
 ```
 
-A Digital Property has determined that U.S. Privacy applies to the transaction. The Digital Property is using version 1 of the U.S. Privacy string specification. The Digital Property has not provided explicit user notice. The user has made a choice to opt out of sale.
+A Digital Property has determined that U.S. Privacy applies to the transaction. 
+* The Digital Property is using version 1 of the U.S. Privacy string specification. (1)
+* The Digital Property has not provided explicit user notice. (N)
+* The user has made a choice to opt out of sale. (Y)
+* The transaction is not intended to operate within the IAB Limited Service Agreement. (N)
 
 ```
 {
@@ -121,7 +129,7 @@ A Digital Property has determined that U.S. Privacy applies to the transaction. 
 }
 ```
 
-A Digital Property has determined that U.S. Privacy does not apply to the transaction and is signaling this using version 1 of the U.S. Privacy string specification.
+A Digital Property has determined that U.S. Privacy does not apply to the transaction and is signaling this using version 1 of the U.S. Privacy string specification. (1---)
 
 ```
 {
