@@ -1,5 +1,5 @@
 ![iab tech lab](https://user-images.githubusercontent.com/19175352/38649177-0d37d17c-3daa-11e8-8934-f0fb47919716.png)
-# U.S. Privacy String
+# US Privacy String
 
 ### **(CCPA Opt-Out Storage Format)**
 **Final Version 1 | November 18, 2019**
@@ -12,10 +12,10 @@
   - [Disclaimer](#disclaimer)
   - [About IAB Tech Lab](#about-iab-tech-lab)
   - [About IAB CCPA Compliance Framework](#about-iab-ccpa-compliance-framework)
-- [What information is stored in a U.S. Privacy String?](#what-information-is-stored-in-a-us-privacy-string)
-- [Who should create a U.S. Privacy string?](#who-should-create-a-us-privacy-string)
-- [When should a U.S. Privacy string be created?](#when-should-a-us-privacy-string-be-created)
-- [U.S. Privacy String Format](#us-privacy-string-format)
+- [What information is stored in a US Privacy String?](#what-information-is-stored-in-a-us-privacy-string)
+- [Who should create a US Privacy string?](#who-should-create-a-us-privacy-string)
+- [When should a US Privacy string be created?](#when-should-a-us-privacy-string-be-created)
+- [US Privacy String Format](#us-privacy-string-format)
   - [Examples](#examples)
 - [URL Parameters](#url-parameters)
 
@@ -29,27 +29,19 @@
 
 ## Introduction
 
-A U.S. Privacy String contains information about disclosures made and choices selected by a
-user regarding consumer data privacy under U.S. Privacy regulation. Version 1 of this
-specification only supports signals pertaining to the California Consumer Privacy Act (CCPA).
+The IAB Tech Lab’s US Privacy String communicates signals regarding consumer privacy and choice under US privacy regulation. Version 1 supports requirements made under the California Consumer Privacy Act (CCPA). 
 
-To facilitate CCPA compliance, the U.S. Privacy String signals whether or not the U.S. Privacy
-Regulations apply to the consumer, if an “explicit notice” legal disclosure has been established
-with a consumer, and if the consumer has chosen to opt out of the sale of their personal data.
+As the concern for consumer privacy grows, regional governance in the US may increase. The US Privacy String was created to allow for updates as needed.
 
-If U.S. Privacy Regulations apply, Digital Property Owners (e.g. website publishers or app
-publishes) are expected to send the U.S. Privacy String as a payload with each impression to all
-third parties who use personal data on their property. Third parties interpret the signals
-presented in a U.S. Privacy String to determine if they are able to process a user’s personal
-data.
+If US privacy regulations apply, digital property owners (websites, apps, or other media platforms) are expected to provide consumer privacy signals to all parties that intend to exchange data on a given transaction (such as displaying an impression). Parties receiving the signal use the information to determine whether they’re allowed to process the consumer’s personal data.
 
-The string data format enables standard persistent storage of user’s preferences by Digital
-Property Owners and supports transport of that data to relevant parties.
+To facilitate CCPA compliance, version 1 of the US Privacy String signals whether or not the regulation applies in a given transaction, whether “explicit notice” was given, and what choice the consumer made (if any).
 
+The String format enables digital properties to store and maintain a consumer’s privacy preference and transmit that data to relevant parties. Parties receiving the data are expected to act on it in accordance with any relevant governance.
 
 ### License
 
-U.S. Privacy String and API technical specifications governed by the IAB Tech Lab is licensed
+US Privacy String and API technical specifications governed by the IAB Tech Lab is licensed
 under a Creative Commons Attribution 3.0 License. To view a copy of this license, visit
 [creativecommons.org/licenses/by/3.0/](https://creativecommons.org/licenses/by/3.0/) or write to Creative Commons, 171 Second Street, Suite 300, San Francisco, CA 94105, USA.
 
@@ -87,87 +79,107 @@ Google, GroupM, Hearst Digital Media, Index Exchange, Integral Ad Science, Linke
 LiveRamp, MediaMath, Microsoft, Oracle Data Cloud, Pandora, PubMatic, Quantcast, Rakuten
 Marketing, Telaria, The Trade Desk, Verizon Media Group, Xandr, and Yahoo! Japan.
 
-
 Established in 2014, the IAB Tech Lab is headquartered in New York City with staff in San
 Francisco, Seattle, and London. Learn more at https://www.iabtechlab.com.
 
 
 ### About IAB CCPA Compliance Framework
 
-The IAB CCPA Compliance Framework comprises of policy and technical work to support CCPA compliance. This document is the work product of the IAB Tech Lab’s CCPA/U.S. Privacy Technical Working Group. Policy requirements were developed by a legal affairs group at IAB in the US. The technical specifications documents refer to the guidance within IAB CCPA Compliance Framework Policies.
+The IAB CCPA Compliance Framework comprises of policy and technical work to support CCPA compliance. This document is the work product of the IAB Tech Lab’s CCPA/US Privacy Technical Working Group. Policy requirements were developed by a legal affairs group at IAB in the US. The technical specifications documents refer to the guidance within IAB CCPA Compliance Framework Policies.
 
 More information about the Framework is available at [iab.com/guidelines/ccpa-framework](https://iab.com/guidelines/ccpa-framework)
 
 
-## What information is stored in a U.S. Privacy String?
+## What information is stored in a US Privacy String?
 
-This current version of the U.S. Privacy String only supports CCPA Compliance. The U.S. Privacy String contains the following information:
+Version 1 of the US Privacy String supports CCPA Compliance, which contains the following information:
 
-1. **General metadata:** the version of this string specification.
-2. **Explicit Notice and Opportunity to Opt-Out of Sale of Data**
-3. **Opt-Out of Sale:** Whether the consumer has opted out of sale of their personal data
-4. **Limited Service Provider Agreement Covered Transaction** Whether a specific transaction is covered by the LSPA
+1. **Version:** the version number of the US Privacy String provided.
+2. **Status of notice given:** whether the digital property provided “explicit notice and opportunity to opt-out of sale of data.”
+3. **User preference:** whether the user has opted out of the sale of their personal data.
+4. **LSPA coverage:** whether the digital property is operating under a signed Limited Service Provider Agreement (LSPA) with the IAB.
 
-## Who should create a U.S. Privacy string?
+## Who should create a US Privacy string?
 
-Digital Property Owners are responsible for generating, persisting, and passing the U.S. Privacy string.
+Digital property owners are responsible for generating, persisting, and passing the US Privacy string.
 
-## When should a U.S. Privacy string be created?
+## When should a US Privacy string be created?
 
-When a sale of data may occur, for example on an impression opportunity, the string should be created. A string can be created to indicate CCPA applies, or to signal the Digital Property owner has determined that CCPA does not apply.
+When a sale of data may occur, for example on an impression opportunity, the string should be created. A string can be created to indicate CCPA applies, or to signal the digital property owner has determined that CCPA does not apply.
 
-### U.S. Privacy String Format
+## How should a US Privacy String be used?
 
-The U.S. Privacy string consists of the following components.
+For each digital transaction (such as displaying an impression) the digital property is expected to send the US Privacy String as a payload with each digital unit of merchandise (typically a single impression) to all parties who use personal data on their properties. Receiving parties use the information to determine whether they are allowed to process the consumer’s personal data in the transaction.
+
+
+## US Privacy String Format
+
+The US Privacy string consists of the following components.
 
 | String Component | Expected Values | Definition |
 |:--|:--|:--|
 | Specification Version | <p>**Number**</p><p>(1 char in string)</p> | The version of this string specification used to encode the string |
 | Explicit Notice/Opportunity to Opt Out | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable)</p> | Has explicit notice been provided as required by 1798.115(d) of the CCPA and the opportunity to opt out of the sale of their data pursuant to 1798.120 and 1798.135 of the CCPA |
-| Opt-Out Sale | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable)</p> | Has user opted-out of the sale of his or her personal information pursuant to 1798.120 and 1798. |
+| Opt-Out Sale | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable. For use ONLY when CCPA does not apply.)</p> | Has user opted-out of the sale of his or her personal information pursuant to 1798.120 and 1798. **If CCPA applies, only Y (yes) or N (no) can be used.** |
 | LSPA Covered Transaction | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable)</p> | Publisher is a signatory to the IAB Limited Service Provider Agreement(LSPA) and the publisher declares that the transaction is covered as a “Covered Opt Out Transaction” or a “Non Opt Out Transaction” as those terms are defined in the Agreement. |
 
 
-In situations where the Digital Property has determined that the consumer does not fall within a U.S. Privacy jurisdiction (e.g. CCPA), the Digital Property may signal this with hyphens in the second through fourth character positions in the following manner: “1---”. Otherwise, when signals are present, the consumer falls within a U.S. Privacy jurisdiction. The “-” character may also be used to signal an unknown state in the second (Explicit Notice) and fourth (LSPA Covered Transaction) character positions. It should be noted that Opt-Out of Sale may never be unknown.
+In situations where the digital property has determined that the consumer does not fall within a US Privacy jurisdiction (such as CCPA), the digital property may signal this with hyphens in the second, third, and fourth character positions in the following manner: “1---”. Otherwise, when signals are present, the consumer falls within a US Privacy jurisdiction. The hyphen character may also be used to signal an unknown state in the second (Explicit Notice) and fourth (LSPA Covered Transaction) character positions. <p> **NOTE:** The third character position (Opt-Out Sale) cannot be unknown (must never include a hyphen) when CCPA applies.</p>
 
 ### Examples
 
-A Digital Property has determined to use a U.S. Privacy string and that CCPA applies to the
-transaction. The Digital Property is using version 1 of the U.S. Privacy string specification. The
-Digital Property has provided explicit user notice. The user has not made a choice to opt out of
-sale.The Digital Property does not intend the transaction to operate within the Limited Service
-Provider Agreement.
+The following examples provide a sample US Privacy String that represents the stated conditions. In all but the last example, a digital property has determined to use a US Privacy String and that CCPA applies to the transaction. 
+
+**Example 1 meets the following conditions:**
+
+* Version 1 of the US Privacy string is being used. (1) 
+* The digital property has provided explicit user notice. (Y) 
+* The user has NOT made a choice to opt out of sale. (N)
+* The digital property is not operating under the Limited Service Provider Agreement. (N)
 
 **1YNN**
 
-A Digital Property has determined to use a U.S. Privacy string and that CCPA applies to the
-transaction. The Digital Property is using version 1 of the U.S. Privacy string specification. The
-Digital Property has not provided explicit user notice. The user has made a choice to opt out of
-sale. The Digital Property does intend the transaction to operate within the Limited Service
-Provider Agreement.
+
+**Example 2 meets the following conditions:**
+
+* Version 1 of the US Privacy string is being used. (1) 
+* The digital property has NOT provided explicit user notice. (N) 
+* The user has made a choice to opt out of sale. (Y)
+* The digital property is not operating under the Limited Service Provider Agreement. (N)
 
 **1NYY**
 
-A Digital Property has determined to use a U.S. Privacy string version 1 and that CCPA does
-not apply to the transaction.
 
-**1---**
+**Example 3: Digital property ousources string creation**
 
-A Digital Property has determined to use a U.S. Privacy string and that CCPA applies to the transaction and has asked their vendor to create the string on their behalf. The Digital Property is using version 1 of the U.S. Privacy string specification. It is unknown if the Digital Property provided explicit user notice. The user has made a choice to opt out of sale. It is unknown if the Digital Property intends the transaction to operate within the Limited Service Provider Agreement.
+In this example the digital property has asked a vendor to create a US Privacy String on their behalf, knowing only whether the user has opted of sale of personal data.
+
+* Version 1 of the US Privacy string is being used. (1) 
+* The status of provided explicit user notice is unknown. (-) 
+* The user has made a choice to opt out of sale. (Y)
+* The status of operating under the Limited Service Provider Agreement is unknown. (-)
 
 **1-Y-**
 
 
+**Example 4: CCPA does not apply**
+
+In this example, a digital property has determined to use a US Privacy String and that CCPA does
+not apply to the transaction.
+
+**1---**
+
+
 ### URL Parameters
 
-A URL-based service that requires U.S. Privacy signals should accept U.S. Privacy string
-according to the following URL parameter specification. A creator of a URL should ensure that the `us_privacy` URL parameter exists only once in the URL, and the URL-based service accepting the request is capable of interpreting a U.S. Privacy string and propagating it to other services.
+A URL-based service that requires US Privacy signals should accept a US Privacy String according to the following conditions and URL parameters:
+
+* The digital property creating the URL should ensure that the `us_privacy` parameter exists only once in the URL.
+* The URL-based service accepting the request is capable of interpreting the US Privacy String and propagating it to other services.
 
 | URL Parameter | Possible Values | Default | Description |
 |:--|:--|:--|:--|
-| us_privacy | string | N/A | URL-encoded U.S. Privacy string format as specified above. |
+| us_privacy | string | N/A | URL-encoded US Privacy string format as specified above. |
 
-Substitution macros following naming and values consistent with this specification can be optionally supported.
-
-Naming convention for this macro:
-${US_PRIVACY}
+Optionally, substitution macros can be used with the following naming convention:
+**${US_PRIVACY}**
