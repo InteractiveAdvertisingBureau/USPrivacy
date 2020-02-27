@@ -1,5 +1,5 @@
 ![iab tech lab](https://user-images.githubusercontent.com/19175352/38649177-0d37d17c-3daa-11e8-8934-f0fb47919716.png)
-# U.S. Privacy User Signal Mechanism “USP API”
+# US Privacy User Signal Mechanism “USP API”
 
 ### **(CCPA Compliance Mechanism)**
 **Final Version 1 | November 20, 2019**
@@ -12,7 +12,7 @@
   - [Disclaimer](#disclaimer)
   - [About IAB Tech Lab](#about-iab-tech-lab)
   - [About IAB CCPA Compliance Framework](#about-iab-ccpa-compliance-framework)
-- [Requirements for U.S. Privacy User Signal API](#requirements-for-us-privacy-user-signal-api)
+- [Requirements for US Privacy User Signal API](#requirements-for-us-privacy-user-signal-api)
 - [What are you required to support?](#what-are-you-required-to-support)
 - [What baseline functionality is required?](#what-baseline-functionality-is-required)
 - [Where should the string be stored?](#where-should-the-string-be-stored)
@@ -36,16 +36,16 @@
 
 ## Introduction
 
-This document outlines technical mechanisms to support communication of U.S. Privacy signal. These signals contain information about disclosures made and choices selected by a user regarding consumer data privacy under U.S. Privacy regulation, and are documented in a separate U.S. Privacy String specification. Version 1 of this U.S. Privacy User Signal API specification only supports signals pertaining to the California Consumer Privacy Act (CCPA).
+The US Privacy API (USP API) is a lightweight API used to communicate signals represented in the US Privacy String, documented separately. 
 
-This specification was created because Digital Properties need a scalable way to establish and persist U.S. Privacy signals. Additionally, downstream vendors need a reliable way to access U.S. Privacy signals when running within a Digital Property’s website or app.
+Initially prompted by regulation in the California Consumer Privacy Act (CCPA), the US Privacy String and this API were created to support compliance with the CCPA. As concern for consumer privacy grows, additional governance in the US may increase. The US Privacy String was designed for adding support for any future governance as needed. 
 
-This document specifies a lightweight API that may be implemented by Digital Properties for web and mobile in-app to represent U.S. Privacy signals.
+The USP API is designed to help digital properties (web, in-app, or other media platforms) collect consumer privacy signals and communicate those signals created and stored in the US Privacy String. Parties that work with the digital property can then access these signals and react according to any applicable governance.
 
 
 ### License
 
-U.S. Privacy String and API technical specifications governed by the IAB Tech Lab is licensed
+US Privacy String and API technical specifications governed by the IAB Tech Lab is licensed
 under a Creative Commons Attribution 3.0 License. To view a copy of this license, visit
 [creativecommons.org/licenses/by/3.0/](https://creativecommons.org/licenses/by/3.0/) or write to Creative Commons, 171 Second Street, Suite 300, San Francisco, CA 94105, USA.
 
@@ -88,41 +88,43 @@ Francisco, Seattle, and London. Learn more at https://www.iabtechlab.com.
 
 ### About IAB CCPA Compliance Framework
 
-The IAB CCPA Compliance Framework comprises of policy and technical work to support CCPA compliance. This document is the work product of the IAB Tech Lab’s CCPA/U.S. Privacy Technical Working Group. Policy requirements were developed by a legal affairs group at IAB in the US. The technical specifications documents refer to the guidance within IAB CCPA Compliance Framework Policies.
+The IAB CCPA Compliance Framework comprises of policy and technical work to support CCPA compliance. This document is the work product of the IAB Tech Lab’s CCPA/US Privacy Technical Working Group. Policy requirements were developed by a legal affairs group at IAB in the US. The technical specifications documents refer to the guidance within IAB CCPA Compliance Framework Policies.
 
 More information about the Framework is available at [iab.com/guidelines/ccpa-framework](https://iab.com/guidelines/ccpa-framework)
 
 
-## Requirements for U.S. Privacy User Signal API
+## Requirements for US Privacy User Signal API
 
-The U.S. Privacy Signal component follows design patterns found in similar privacy compliance frameworks. The design pattern includes how the component is loaded into web pages or native apps and how vendors interact with the USP API. The USP component shall be loaded onto a Digital Property’s site or app.
+The US Privacy Signal component follows design patterns found in similar privacy compliance frameworks. The design pattern includes how the component is loaded into web pages or native apps and how vendors interact with the USP API. The USP component shall be loaded onto a digital property’s site or app.
 
 ## What are you required to support?
 
-To support sending and receiving of the U.S. Privacy String within the User Signal Mechanism, the following functionalities are required:
-- Desktop JavaScript API support
-- Mobile local storage support, and An API (optionally Swift or Java, etc)
-- Macro support (see U.S. Privacy String specification for details)
+To support sending and receiving of the US Privacy String within the US API, the following functionalities are required:
+* Desktop JavaScript API support
+* Mobile local storage support, and an API (optionally Swift or Java, etc.)
+* Macro support (see US Privacy String specification for details)
 
 ## What baseline functionality is required?
 
-As a baseline, Digital Properties must create a string and make it available to vendors via this API. This string indicates that CCPA does not apply, or signals whether the explicit notice has been provided and the user opted out.
+As a baseline, digital properties must create a US Privacy String and make it available to vendors using this API. The created String communicates signals as compliant with the regulation that applies. 
+
+For example, in the case of CCPA, the String communicates wether CCPA applies in the given transaction, whether explicit notice was given to the consumer, the consumer's choice on opt-out of sale of data, and whether the transaction is operating under the IAB Limited Service Provider Agreement (LSPA).
 
 ## Where should the string be stored?
 
-The Digital Property is responsible for storing the string. It’s recommended to store the string into a 1st party cookie, named “usprivacy”, to and from where the library can write/read it. In case storing on a 1st party cookie is not possible or practical (e.g. on mobile native or if cookies are disabled), a different storage method can be adopted. The API provides individual methods to modify the value of each different section of the string.
+The digital property operating the UP API is responsible for storing the US Privacy String. The recommendation is to store the String in a first-party cookie named "usprivacy" where the API library can read it and write to it. In case storing on a 1st party cookie is not possible or practical (such as on mobile native or if cookies are disabled), a different storage method should be adopted. The API provides individual methods to modify the value of each different section of the string.
 
 ## How is the API exposed?
 
-The following API function can be provided;
+The API is exposed using the following API function:
 
 **`__uspapi(Command, Version, Callback)`**
 
-`__uspapi()` **must always be a function** at all times, even at initialization – the API must be able to handle calls at all times.
+`__uspapi()` **must always be a function** at all times, even at initialization, because the API must be able to handle calls at all times.
 
-Secondarily, the implementation must provide a proxy for postMessage events targeted to the `__uspapi` interface sent from within nested iframes. See guidance in this specification [here](#how-can-vendors-that-use-iframes-call-the-API-from-an-iframe).
+The implementation must also provide a proxy for `postMessage` events targeted to the `__uspapi` interface sent from within nested iframes. See guidance in this specification [below](#how-can-vendors-that-use-iframes-call-the-API-from-an-iframe).
 
-At the minimum, the implementation must support the following API commands:
+At a minimum, the implementation must support the following API command:
 `'getUSPData'`.
 
 ## getUSPData
@@ -130,7 +132,7 @@ At the minimum, the implementation must support the following API commands:
 | Argument Name | Type | Optional | Value |
 | :-- | :-- | :-- | :-- |
 | command | string |  | `'getUSPData'` |
-| version | number |  | U.S. Privacy spec version |
+| version | number |  | US Privacy spec version |
 | callback | function |  | `function(uspData: uspdata, success: boolean)` |
 
 
@@ -146,7 +148,7 @@ if(success) {
 });
 ```
 
-If U.S. Privacy does not apply to this user in this context then the string in uspData object will contain “1---”.
+If US Privacy does not apply to this user in this context then the string in uspData object will contain “1---”.
 
 The callback shall be called immediately and without any asynchronous logic with whatever information is available in the current state of the library.
 
@@ -158,7 +160,7 @@ The `callback` shall be invoked only once per api call with this command.
 uspData Object
 ```javascript
 {
-"version": 1, /* number indicating the U.S. Privacy spec
+"version": 1, /* number indicating the US Privacy spec
 version */
 "uspString": "1YNN" /* string; not applicable: “1---” */
 }
