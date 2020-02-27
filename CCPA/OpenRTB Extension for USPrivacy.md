@@ -97,7 +97,7 @@ The signals in a US Privacy string can be communicated in OpenRTB bid requests u
 ### Examples:
 The following examples provide sample code with a US Privacy String that meets the conditions described in each case.
 
-A Digital Property has determined that U.S. Privacy applies to the transaction.
+A Digital Property has determined that U.S. Privacy applies to the transaction and:
 * The Digital Property is using version 1 of the U.S. Privacy string specification. (1)
 * The Digital Property has provided explicit user notice. (Y)
 * The user has not made a choice to opt out of sale. (N)
@@ -113,7 +113,7 @@ A Digital Property has determined that U.S. Privacy applies to the transaction.
 }
 ```
 
-A Digital Property has determined that U.S. Privacy applies to the transaction. 
+A Digital Property has determined that U.S. Privacy applies to the transaction and: 
 * The Digital Property is using version 1 of the U.S. Privacy string specification. (1)
 * The Digital Property has not provided explicit user notice. (N)
 * The user has made a choice to opt out of sale. (Y)
