@@ -1,5 +1,5 @@
 ![iab tech lab](https://user-images.githubusercontent.com/19175352/38649177-0d37d17c-3daa-11e8-8934-f0fb47919716.png)
-# OpenRTB Extension for U.S. Privacy
+# OpenRTB Extension for US Privacy
 ### **(For CCPA Compliance)**
 **Final Version 1 | March 2020**
 
@@ -38,7 +38,7 @@ The OpenRTB Extension for US Privacy was developed by IAB Tech Lab’s CCPA/US P
 
 ### License
 
-U.S. Privacy String and API technical specifications governed by the IAB Tech Lab is licensed
+US Privacy String and API technical specifications governed by the IAB Tech Lab is licensed
 under a Creative Commons Attribution 3.0 License. To view a copy of this license, visit
 [creativecommons.org/licenses/by/3.0/](https://creativecommons.org/licenses/by/3.0/) or write to Creative Commons, 171 Second Street, Suite 300, San Francisco, CA 94105, USA.
 
@@ -78,7 +78,7 @@ Francisco, Seattle, and London. Learn more at https://www.iabtechlab.com.
 
 ### About IAB CCPA Compliance Framework
 
-The IAB CCPA Compliance Framework comprises of policy and technical work to support CCPA compliance. This document is the work product of the ​IAB Tech Lab’s CCPA/U.S. Privacy Technical Working Group. Policy requirements were developed by a legal affairs group at IAB in the US. The technical specifications documents refer to the guidance within IAB CCPA Compliance Framework Policies.
+The IAB CCPA Compliance Framework comprises of policy and technical work to support CCPA compliance. This document is the work product of the ​IAB Tech Lab’s CCPA/US Privacy Technical Working Group. Policy requirements were developed by a legal affairs group at IAB in the US. The technical specifications documents refer to the guidance within IAB CCPA Compliance Framework Policies.
 
 More information about the Framework is available at [iab.com/guidelines/ccpa-framework](https://iab.com/guidelines/ccpa-framework)
 
@@ -90,16 +90,16 @@ The signals in a US Privacy string can be communicated in OpenRTB bid requests u
 
 | Field | Scope | Type | Default | Description |
 | :-- | :-- | :-- |:-- |:-- |
-| us_privacy | **optional** | string | - | Must follow the [U.S. Privacy string format](https://github.com/wittjill/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md). |
+| us_privacy | **optional** | string | - | Must follow the [US Privacy string format](https://github.com/wittjill/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md). |
    
 
 
 ### Examples:
 The following examples provide sample code with a US Privacy String that meets the conditions described in each case.
 
-A Digital Property has determined that U.S. Privacy applies to the transaction and:
-* The Digital Property is using version 1 of the U.S. Privacy string specification. (1)
-* The Digital Property has provided explicit user notice. (Y)
+A digital property has determined that US Privacy applies to the transaction and:
+* The digital property is using version 1 of the US Privacy string specification. (1)
+* The digital property has provided explicit user notice. (Y)
 * The user has not made a choice to opt out of sale. (N)
 * The transaction is not intended to operate within the IAB Limited Service Agreement. (N)
 
@@ -113,9 +113,9 @@ A Digital Property has determined that U.S. Privacy applies to the transaction a
 }
 ```
 
-A Digital Property has determined that U.S. Privacy applies to the transaction and: 
-* The Digital Property is using version 1 of the U.S. Privacy string specification. (1)
-* The Digital Property has not provided explicit user notice. (N)
+A digital property has determined that US Privacy applies to the transaction and: 
+* The digital property is using version 1 of the US Privacy string specification. (1)
+* The digital property has not provided explicit user notice. (N)
 * The user has made a choice to opt out of sale. (Y)
 * The transaction is not intended to operate within the IAB Limited Service Agreement. (N)
 
@@ -129,7 +129,7 @@ A Digital Property has determined that U.S. Privacy applies to the transaction a
 }
 ```
 
-A Digital Property has determined that U.S. Privacy does not apply to the transaction and is signaling this using version 1 of the U.S. Privacy string specification. (1---)
+A digital property has determined that US Privacy does not apply to the transaction and is signaling this using version 1 of the US Privacy string specification. (1---)
 
 ```
 {
@@ -145,4 +145,4 @@ A Digital Property has determined that U.S. Privacy does not apply to the transa
 
 **URL Parameters**
 
-This extension does not cover use cases where a service requires U.S. Privacy signals but cannot access the OpenRTB bid request. Details for URL-based services that require U.S. Privacy signals can be found in the [U.S. Privacy string](https://github.com/wittjill/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md) specification.
+This extension does not cover use cases where a service requires US Privacy signals but cannot access the OpenRTB bid request. Details for URL-based services that require US Privacy signals can be found in the [US Privacy string](https://github.com/wittjill/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md) specification.
