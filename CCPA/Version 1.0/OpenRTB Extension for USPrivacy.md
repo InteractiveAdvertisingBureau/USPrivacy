@@ -21,7 +21,7 @@
 
 | Date | Version | Comments |
 | :-- | :-- | :-- |
-| February 2020 | 1.0 | Added final bracket in example and final wording edits |
+| March 2020 | 1.0 | Added final bracket in example and final wording edits |
 | November 18, 2019 | 1.0 | Published final public version. |
 | October 2019 | 1.0 | Draft for public comment. Version 1 ONLY supports CCPA compliance. |
 
@@ -78,7 +78,7 @@ Francisco, Seattle, and London. Learn more at https://www.iabtechlab.com.
 
 ### About IAB CCPA Compliance Framework
 
-The IAB CCPA Compliance Framework comprises of policy and technical work to support CCPA compliance. This document is the work product of the ​IAB Tech Lab’s CCPA/US Privacy Technical Working Group. Policy requirements were developed by a legal affairs group at IAB in the US. The technical specifications documents refer to the guidance within IAB CCPA Compliance Framework Policies.
+The IAB CCPA Compliance Framework comprises of policy and technical work to support CCPA compliance. This document is the work product of the IAB Tech Lab’s CCPA/US Privacy Technical Working Group. Policy requirements were developed by a legal affairs group at IAB in the US. The technical specifications documents refer to the guidance within IAB CCPA Compliance Framework Policies.
 
 More information about the Framework is available at [iab.com/guidelines/ccpa-framework](https://iab.com/guidelines/ccpa-framework)
 
@@ -90,7 +90,7 @@ The signals in a US Privacy string can be communicated in OpenRTB bid requests u
 
 | Field | Scope | Type | Default | Description |
 | :-- | :-- | :-- |:-- |:-- |
-| us_privacy | **optional** | string | - | Must follow the [US Privacy string format](https://github.com/wittjill/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md). |
+| us_privacy | **optional** | string | - | Must follow the [US Privacy string format](https://github.com/wittjill/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md). |
    
 
 
@@ -145,4 +145,4 @@ A digital property has determined that US Privacy does not apply to the transact
 
 **URL Parameters**
 
-This extension does not cover use cases where a service requires US Privacy signals but cannot access the OpenRTB bid request. Details for URL-based services that require US Privacy signals can be found in the [US Privacy string](https://github.com/wittjill/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md) specification.
+This extension does not cover use cases where a service requires US Privacy signals but cannot access the OpenRTB bid request. Details for URL-based services that require US Privacy signals can be found in the [US Privacy string](https://github.com/wittjill/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md) specification.
