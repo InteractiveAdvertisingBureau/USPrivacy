@@ -2,7 +2,7 @@
 # US Privacy String
 
 ### **(CCPA Opt-Out Storage Format)**
-**Final Version 1 | November 18, 2019**
+**Final Version 1 | March 2020**
 
 
 **Table of Contents**
@@ -24,7 +24,7 @@
 
 | Date | Version | Comments |
 | :-- | :-- | :-- |
-| February 2020 | 1.0 | Clarification on accepted uses of "-". |
+| March 2020 | 1.0 | Clarification on accepted uses of "-". |
 | November 2019 | 1.0 | Published final public version. Added support for Limited Service Provider Agreement (LSPA) signal. |
 | October 2019 | 1.0 | Draft for public comment. Version 1 ONLY supports CCPA compliance. |
 
