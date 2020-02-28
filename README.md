@@ -9,9 +9,9 @@ Compliance Framework Policies.
 More information about the Framework is available at https://iab.com/guidelines/ccpa-framework.
 
 **Relevant Specification Documents**
-- [US Privacy String](https://github.com/wittjill/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md)
-- [USP API](https://github.com/wittjill/USPrivacy/blob/master/CCPA/USP%20API.md)
-- [OpenRTB Extension for US Privacy](https://github.com/wittjill/USPrivacy/blob/master/CCPA/OpenRTB%20Extension%20for%20USPrivacy.md)
+- [US Privacy String](https://github.com/wittjill/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md)
+- [USP API](https://github.com/wittjill/USPrivacy/blob/master/CCPA/Version%201.0/USP%20API.md)
+- [OpenRTB Extension for US Privacy](https://github.com/wittjill/USPrivacy/blob/master/CCPA/Version%201.0/OpenRTB%20Extension%20for%20USPrivacy.md)
 
 
 ### License
