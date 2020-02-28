@@ -2,7 +2,7 @@
 # US Privacy User Signal Mechanism “USP API”
 
 ### **(CCPA Compliance Mechanism)**
-**Final Version 1 | November 20, 2019**
+**Final Version 1 | March 2020**
 
 
 **Table of Contents**
@@ -28,7 +28,7 @@
 
 | Date | Version | Comments |
 | :-- | :-- | :-- |
-| February 2020 | 1.0 | Fixed error in uspData Object example and description |
+| March 2020 | 1.0 | Fixed error in uspData Object example and description |
 | November 20, 2019 | 1.0 | Fixed error referencing in-app key. Correct key is “IABUSPrivacy_String” |
 | November 18, 2019 | 1.0 | Published final public version. Added SafeFrame, iFrame support. |
 | October 2019 | 1.0 | Draft for public comment. Version 1 ONLY supports CCPA compliance. |
