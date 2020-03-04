@@ -148,7 +148,7 @@ The following examples provide a sample US Privacy String that represents the st
 * The user has made a choice to opt out of sale. (Y)
 * The digital property is not operating under the Limited Service Provider Agreement. (N)
 
-**1NYY**
+**1NYN**
 
 
 **Example 3: Digital property ousources string creation**
