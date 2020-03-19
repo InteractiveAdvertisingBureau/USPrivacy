@@ -112,7 +112,7 @@ For example, in the case of CCPA, the String communicates wether CCPA applies in
 
 ## Where should the string be stored?
 
-The digital property operating the UP API is responsible for storing the US Privacy String. The recommendation is to store the String in a first-party cookie named "usprivacy" where the API library can read it and write to it. In case storing on a 1st party cookie is not possible or practical (such as on mobile native or if cookies are disabled), a different storage method should be adopted. The API provides individual methods to modify the value of each different section of the string.
+The digital property operating the USP API is responsible for storing the US Privacy String. The recommendation is to store the String in a first-party cookie named "usprivacy" where the API library can read it and write to it. In case storing on a 1st party cookie is not possible or practical (such as on mobile native or if cookies are disabled), a different storage method should be adopted. The API provides individual methods to modify the value of each different section of the string.
 
 ## How is the API exposed?
 
