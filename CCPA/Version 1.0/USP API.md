@@ -193,7 +193,7 @@ If not allowing or blocking postMessage and therefore implementing the proxy met
 
 ### Without SafeFrames, using postMessage
 
-The [pwindow.postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) method may be used from a child iframe to make requests send calls to from a parent's (or any ancestor's) frame's API. To locate an ancestor frame capable of responding to postMessage() API calls search for an ancestor frame that has a child frame named `'__uspapiLocator'`.
+The [window.postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage) method may be used from a child iframe to make requests send calls to from a parent's (or any ancestor's) frame's API. To locate an ancestor frame capable of responding to postMessage() API calls search for an ancestor frame that has a child frame named `'__uspapiLocator'`.
 
 **Sent Message**
 The sent message should follow the form outlined below. The _command,parameter_ and _version_ object properties correspond to their namesake parameters defined as method argument parameters for the `__uspapi()` method. The “sent message” also requires a unique _callId_ property to help match the request with a response.
