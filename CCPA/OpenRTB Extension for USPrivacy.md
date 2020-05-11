@@ -90,7 +90,7 @@ The signals in a US Privacy string can be communicated in OpenRTB bid requests u
 
 | Field | Scope | Type | Default | Description |
 | :-- | :-- | :-- |:-- |:-- |
-| us_privacy | **optional** | string | - | Must follow the [US Privacy string format](https://github.com/wittjill/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md). |
+| us_privacy | **optional** | string | - | Must follow the [US Privacy string format](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md). |
    
 
 
@@ -145,4 +145,4 @@ A digital property has determined that US Privacy does not apply to the transact
 
 **URL Parameters**
 
-This extension does not cover use cases where a service requires US Privacy signals but cannot access the OpenRTB bid request. Details for URL-based services that require US Privacy signals can be found in the [US Privacy string](https://github.com/wittjill/USPrivacy/blob/master/CCPA/Version%201.0/US%20Privacy%20String.md) specification.
+This extension does not cover use cases where a service requires US Privacy signals but cannot access the OpenRTB bid request. Details for URL-based services that require US Privacy signals can be found in the [US Privacy string](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md) specification.
