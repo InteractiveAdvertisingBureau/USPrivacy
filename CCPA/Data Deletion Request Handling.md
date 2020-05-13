@@ -6,7 +6,7 @@ This specification provides a way for a publisher to communicate to downstream p
 
 In particular, Section 1798.105(c) of the California Consumer Protection Act (CCPA) states that "[a] business that receives a verifiable consumer request from a consumer to delete the consumer's personal information [shall] . . direct any service providers to delete the consumer's personal information from their records." 
 
-In response to this directive in the CCPA, this specification offers the technical means for publishers to communicate deletion requests to their service providers. All service providers covered by IAB Privacy LLC's Limited Service Provider Agreement (LSPA) and any other providers who receive the signal for deletion requests are then enabled and obliged to comply and delete the specified consumer data.
+In response to this directive in the CCPA, this specification offers the technical means for publishers to communicate deletion requests to their service providers. All service providers covered by IAB Privacy LLC's Limited Service Provider Agreement (LSPA) and any other providers who receive the signal for deletion requests are then enabled to comply and delete the specified consumer data.
 
 While this specification provides the technical means for compliance in cases where CCPA applies, implementations may exist to support deletion requests outside CCPA governance. 
 
@@ -30,7 +30,7 @@ For vendors that provide multiple services, a URL is provided for each service. 
 
 ### Deletion
 
-The technical solution detailed in this specification provides the means to signal consumer requests for data deletion. Companies supporting the US Privacy Framework will respond to the signals by deleting the consumer's relevant personal data. The process for deletion depends on the company's technology and operational practices in place. _How_ a vendor deletes a consumer's personal data is out of scope for this specification.
+The technical solution detailed in this specification provides the means to signal consumer requests for data deletion. Companies supporting the US Privacy Framework (i.e., service providers) will respond to the signals by deleting the consumer's relevant personal data to the extent required by CCPA. The process for deletion depends on the company's technology and operational practices in place. _How_ a vendor deletes a consumer's personal data is out of scope for this specification.
 
 
 ### Non-web Environments
