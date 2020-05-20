@@ -18,7 +18,7 @@ While this specification provides the technical means for compliance in cases wh
 
 ## How it Works
 
-Any ad tech company (vendor) supporting the US Privacy framework, exposes a JavaScript resource for each service they offer. The vendor hosts a URL that provides this resource and also serves as a unique identifier for the resource. The URL is made public to a maintained LSPA signatories list and to non-signatories based on the vendor's documented practices.
+Any ad tech company (vendor) supporting the US Privacy framework, exposes a JavaScript resource for each service they offer. The vendor hosts a URL that provides this resource and also serves as a unique identifier for the resource. The URL is made public to a maintained LSPA signatories list and to non-signatories via the vendor's method of choice.
 
 Publishers working with any services provided by these vendors consume the exposed JavaScript and embed it on their properties where consumers can request deletion of their personal data. If data deletion is requested, all javascript signals on the publisher property are sent to the associated vendors. Vendors then respond by deleting the relevant personal data and signaling any affected vendors downstream.
 
