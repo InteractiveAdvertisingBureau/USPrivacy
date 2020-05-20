@@ -40,7 +40,7 @@ If the consumer initiates a data deletion request from a non-web environment, th
 
 ## Deletion Signaling
 
-Deletion signaling uses two commands: `registerDeletion` and `performDeletion`. The first command, `registerDeletion`, is executed when the publisher loads a vendor script on a given page or property. This registers the vendor script to receive the signal sent by the `performDeletion` call. The second command, `performDeletion`, is executed if a consumer requests data deletion and signals the vendor that a consumer has requested that their personal data be deleted.  
+Deletion signaling uses two commands: `registerDeletion` and `performDeletion`. The first command, `registerDeletion`, is executed by the vendor script when the publisher loads it on a given page or property. This registers the vendor script to receive the signal sent by the `performDeletion` call. The second command, `performDeletion`, is executed by the publisher if a consumer requests data deletion and signals the vendor that a consumer has requested that their personal data be deleted.  
 
 
 ### Sample Workflow
