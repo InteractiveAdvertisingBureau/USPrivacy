@@ -2,7 +2,7 @@
 
 ## Summary
 
-This specification provides a way for a publisher to communicate to downstream parties via a webpage about a consumer's request to delete their data. 
+This specification provides a way for a publisher to communicate to downstream parties about a consumer's request to delete their data. 
 
 In particular, Section 1798.105(c) of the California Consumer Protection Act (CCPA) states that "[a] business that receives a verifiable consumer request from a consumer to delete the consumer's personal information [shall] . . direct any service providers to delete the consumer's personal information from their records." 
 
