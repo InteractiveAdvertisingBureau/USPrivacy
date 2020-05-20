@@ -40,7 +40,7 @@ If the consumer initiates a data deletion request from a non-web environment, th
 
 ## Deletion Signaling
 
-Deletion signaling uses two commands: `registerDeletion` and `performDeletion`. The first command, `registerDeletion`, is executed when the publisher loads script on a given page or property. This informs the vendor that the provided script has been loaded. The second command, `performDeletion`, is executed if a consumer requests data deletion and informs the vendor that a consumer has requested that their private data be deleted.  
+Deletion signaling uses two commands: `registerDeletion` and `performDeletion`. The first command, `registerDeletion`, is executed when the publisher loads a vendor script on a given page or property. This registers the vendor script to receive the signal sent by the `performDeletion` call. The second command, `performDeletion`, is executed if a consumer requests data deletion and signals the vendor that a consumer has requested that their personal data be deleted.  
 
 
 ### Sample Workflow
@@ -61,22 +61,22 @@ Vendors need access to the publisher domain to get a user identifier to associat
 
 ## registerDeletion
 
-This command registers a vendor-specific callback function at the API. When the publisher loads the vendor deletion script, it must execute `registerDeletion`. 
+This command registers a vendor-specific callback function at the API. When the publisher loads the vendor deletion script, those scripts must execute `registerDeletion`. 
 
-The `registerDeletion` command uses the following syntax: 
+This command is an update to the existing `__uspapi` function with the following syntax: 
 
 ```
 __usapi("registerDeletion", version, performDeletionFunction)
 ```
 
-Upon execution, the vendor is notified that the vendor's deletion script was loaded.
+Upon execution, the vendor script is registered to receive the signal sent by the call to `performDeletion`.
 
 
 ## performDeletion
 
-The publisher, or its CMP where applicable, calls this command on some user delete action to initiate the deletion process. The command communicates to vendors that a specified user has requested that their personal data be deleted. 
+The publisher, or its CMP where applicable, calls this command based on some user delete action to initiate the deletion process. The command communicates to vendors that a specified user has requested that their personal data be deleted by calling the `performDeletionFunction` registered during the call to `registerDeletion`. 
 
-This command is an update to existing  `__uspapi`. The `performDeletion` command uses the following syntax: 
+This command is an update to the existing `__uspapi` function with the following syntax: 
 
 ```
 __usapi("performDeletion", version, null, identifiers)
