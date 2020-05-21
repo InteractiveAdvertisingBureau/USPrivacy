@@ -2,13 +2,9 @@
 
 ## Summary
 
-This specification provides a way for a publisher to communicate to downstream parties about a consumer's request to delete their data. 
+This specification defines the Data Deletion Request (DDR), which is the mechanism by which the IAB CCPA Compliance Framework complies with Section 1798.105(c) of the California Consumer Protection Act (CCPA) which states "[a] business that receives a verifiable consumer request from a consumer to delete the consumer's personal information [shall] . . direct any service providers to delete the consumer's personal information from their records."  The DDR is a technical contract between a Publisher and Vendors in order to enable a consumer on a Publisher's digital property to direct Vendors to delete the comsumer's personal information from their records.  As stated, the DDR exists primarily to comply with CCPA but may be used for deletion requests outside the domain of CCPA governance.
 
-In particular, Section 1798.105(c) of the California Consumer Protection Act (CCPA) states that "[a] business that receives a verifiable consumer request from a consumer to delete the consumer's personal information [shall] . . direct any service providers to delete the consumer's personal information from their records." 
-
-In response to this directive in the CCPA, this specification offers the technical means for publishers to communicate deletion requests to their service providers. All service providers covered by IAB Privacy LLC's Limited Service Provider Agreement (LSPA) and any other providers who receive the signal for deletion requests are then enabled to comply and delete the specified consumer data.
-
-While this specification provides the technical means for compliance in cases where CCPA applies, implementations may exist to support deletion requests outside CCPA governance. 
+The technical solution detailed in this specification provides the means to signal consumer requests for data deletion. Companies supporting the US Privacy Framework (i.e., service providers) will respond to the signals by deleting the consumer's relevant personal data to the extent required by CCPA. The process for deletion depends on the company's technology and operational practices in place. _How_ a Vendor deletes a consumer's personal data is out of scope for this specification.
 
 
 ### Relevant Documents
@@ -18,311 +14,259 @@ While this specification provides the technical means for compliance in cases wh
 
 ## How it Works
 
-Any ad tech company (vendor) supporting the US Privacy framework, exposes a JavaScript resource for each service they offer. The vendor hosts a URL that provides this resource and also serves as a unique identifier for the resource. The URL is made public to a maintained LSPA signatories list and to non-signatories via the vendor's method of choice.
+Every Vendor that provides a service for a Publisher must host a JavaScript file for that Publisher.  The Publisher must include the Vendor-provided JavaScript file as a `script` html element with a `src` attribute equal to the Vendor's specified hosting URL on every page that the Publisher intends to invoke the Data Deletion Request (eg. `<script src="https://www.vendor-123.com/privacy/ddr.js"></script>`). The Vendor-hosted JavaScript registers a Vendor-proprietary callback function with the [USP API](./USP%20API.md) to be invoked if a deletion request occurs.
 
-Publishers working with any services provided by these vendors consume the exposed JavaScript and embed it on their properties where consumers can request deletion of their personal data. If data deletion is requested, all vendor javascript on the publisher property is notified. Vendors then respond by deleting the relevant personal data and signaling any affected vendors downstream.
+## USP API Commands
 
+A Data Deletion Request is accomplished by the [`registerDeletion`](#registerdeletion) and [`performDeletion`](#performdeletion) Commands invoked on the [USP API](./USP%20API.md).
 
-### Multiple Services
+ * [`registerDeletion`](#registerdeletion) is executed by the [Vendor-hosted script](#how-it-works) upon load (immediately), which registers the Vendor-proprietary callback to be invoked when the [`performDeletion`](#performdeletion) is invoked.
+ * [`performDeletion`](#performdeletion) is staged to execute by a Publisher upon a consumer taking action to requst personal data be deleted.  The [USP API](./USP%20API.md) will call all Vendor callbacks registered with the [`registerDeletion`](#registerdeletion) Command.
 
-For vendors that provide multiple services, a URL is provided for each service. A publisher may use any of those services but not necessarily all of them. When a consumer requests data deletion, only the scripts provided on the page will trigger the delete request back to the vendor. Vendors can then delete the personal data, in accordance with their practices, for each service provided on the publisher property where the request originated.
+### `registerDeletion`
 
+This Command registers a Vendor-specific callback function with the [USP API](./USP%20API.md). The callback will only be called when the [`performDeletion`](#performdeletion) Command is invoked.
 
-### Deletion
+| Argument Name | Type | Value |
+| :-- | :-- | :-- |
+| command | string | `'registerDeletion'` |
+| version | number | US Privacy spec version |
+| callback | function | `function()` |
 
-The technical solution detailed in this specification provides the means to signal consumer requests for data deletion. Companies supporting the US Privacy Framework (i.e., service providers) will respond to the signals by deleting the consumer's relevant personal data to the extent required by CCPA. The process for deletion depends on the company's technology and operational practices in place. _How_ a vendor deletes a consumer's personal data is out of scope for this specification.
+*Example*
 
+```JavaScript
 
-### Non-web Environments
+__uspapi("registerDeletion", version, (identifiers) => {
 
-If the consumer initiates a data deletion request from a non-web environment, the request can be propagated through the same javascript resource described above by directing the user to a publisher webpage to complete the deletion request. The request can be associated to the device from where it originated using defined parameters.
+  // do proprietary delete stuff
 
-
-## Deletion Signaling
-
-Deletion signaling uses two commands: `registerDeletion` and `performDeletion`. The first command, `registerDeletion`, is executed by the vendor script when the publisher loads it on a given page or property. This registers the vendor script to receive the signal sent by the `performDeletion` call. The second command, `performDeletion`, is executed by the publisher if a consumer requests data deletion and signals the vendor that a consumer has requested that their personal data be deleted.  
-
-
-### Sample Workflow
-1. Publisher loads scripts provided by vendors. 
-2. The vendors' scripts execute `registerDeletion` at load.
-3. When a data deletion request is made by the user on the page, the publisher executes `performDeletion`, which executes all vendors' deletion scripts that have been registered with` registerDeletion.`
-4. Vendors perform deletion asynchronously, in accordance with their technology and operational practices. 
-
-
-### How should publishers load vendor scripts?
-
-Vendors need access to the publisher domain to get a user identifier to associate with a delete request. In order for vendors to do so, the vendor scripts described in this specification must be loaded _directly _on the publisher domain normally used for collecting data and serving ads and not on a separate or generic domain. For safety, the vendor scripts can be loaded in an iframe, provided the following conditions are met:
-*   The iframe is hosted on the publisher domain
-*   If the iframe sandbox parameter is provided, the following restrictions are lifted:
-    *   `allow-scripts`
-    *   `allow-storage-access-by-user-activation`
-
-
-## registerDeletion
-
-This command registers a vendor-specific callback function at the API. When the publisher loads the vendor deletion script, those scripts must execute `registerDeletion`. 
-
-This command is an update to the existing `__uspapi` function with the following syntax: 
+})
 
 ```
-__usapi("registerDeletion", version, performDeletionFunction)
-```
 
-Upon execution, the vendor script is registered to receive the signal sent by the call to `performDeletion`.
+### `performDeletion`
 
+The Publisher, or its CMP where applicable, invokes this Command when a consumer delete action to initiate the deletion process occurs. The Command invokes all callbacks registered via the [`registerDeletion`](#registerdeletion) Command in no specified order.
 
-## performDeletion
+| Argument Name | Type | Optional | Value |
+| :-- | :-- | :-- | :-- |
+| command | string |  | `'registerDeletion'` |
+| version | number |  | US Privacy spec version |
+| callback | null |  | no callback |
+| param | [`Identifiers`](#identifiers) | X | Optional [`Identifiers`](#identifiers) object for [In-App](#in-app) |
 
-The publisher, or its CMP where applicable, calls this command based on some user delete action to initiate the deletion process. The command communicates to vendors that a specified user has requested that their personal data be deleted by calling the `performDeletionFunction` registered during the call to `registerDeletion`. 
+*Example*
 
-This command is an update to the existing `__uspapi` function with the following syntax: 
+```JavaScript
 
-```
-__usapi("performDeletion", version, null, identifiers)
-```
-
-The callback parameter of the `__uspapi` is not used in this case and can remain null. The `identifiers` parameter is only required when handling non-web deletion requests and is further explained in the following section. 
-
-
-### Identifying Data to Delete in Non-web Environments
-
-When operating in a non-web environment, data deletion requests are handled by sending the user to a web page where they can complete the request to have their data deleted. Vendors need certain information to correctly identify the data to delete:  the platform name, the unique app identifier used in the app store, and the device identifier for that platform / store. 
-
-The `performDeletion` command includes a parameter for identifiers. Using the `identifiers` parameter, publishers can pass multiple items, each with the required fields: `platform`, `app_identifier`, and `user_identifier`. These details should be passed from the app context to the delete webpage and then along with the request from the page. Below are a few examples of that information:
+__uspapi("performDeletion", version, null, {
+  "platform": "ios",
+  "app_identifier": "01234567891446075923",
+  "user_identifier": "AEA12347583AACD-A123667-A418AABC-AB123806-1242AEAACB12AB1234548606"
+})
 
 ```
-identifiers {
-  ...
-  "platform": "ios-app-store",
+
+The callback parameter of the `__uspapi` is not used in this case and shall be passed as null. The `Identifiers` argument is only required when handling [in-app](#in-app) deletion requests.
+
+#### In-App
+
+When operating in an in-app environment that leverages WebViews (Mobile, CTV, etc), cookies do not persist beyond a session. Without persistant cookies, Vendors will need more information to correctly identify the consumer and the assosciated data to delete.  When WebView limitations exist, A Publisher shall invoke the [`performDeletion`](#performdeletion) with an [`Identifiers`](#identifiers) object as an argument for the Param.  This [`Identifiers`](#identifiers) object will contain the platform name, the unique app identifier used in the app store, and the device identifier for that platform / store. A Publisher shall open a WebView with a web page where a consumer can complete the request to have their data deleted.
+
+##### `Identifiers`
+
+The [`performDeletion`](#performdeletion) Command may be invoked with an optional `Identifiers` arguments as the Param. A hosting app passes app-specific identifier information to the WebView that invokes the [`performDeletion`](#performdeletion) Command so that it may construct an `Identifiers` object to apply as an agrument.
+
+
+```JavaScript
+/**
+ * "platform": string // see table
+ * "app_id": string // platform specific app identifier
+ * "user_id": string // IDFA on apple, or AAID on android platforms
+ */
+{
+  "platform": "ios",
   "app_identifier": "01234567891446075923",
   "user_identifier": "AEA12347583AACD-A123667-A418AABC-AB123806-1242AEAACB12AB1234548606"
 }
-...
-{
-  "platform": "android-play-store",
-  "app_identifier": "com.acmeinc.acmeapp",
-  "user_identifier": "aaaacdda123802ae-11fb191c-1247abad-12340794ad123394ac123912"
-...
+```
+
+##### Platforms
+
+The following is the list of platform identifiers.
+
+| Patform Name | Store | Identifier |
+| :-- | :-- | :-- |
+| Android | Google Play Store | `"google"` |
+| Android | Amazon Store | `"amazon"` |
+| iOS | App Store | `"ios"` |
+| Samsung | App Store | `"samsung"` |
+| Huawei | App Store | `"huawei"` |
+| Sony | App Store | `"sony"` |
+| LG | App Store | `"lg"` |
+
+## Examples
+
+### Example Publisher Script
+
+In this example, the Publisher has an Array of strings.  Each of those strings contains a URL to a Vendor delete script src.  This Publisher also has a CCPA delete button with the class name `ccpa-delete` on their page.  First the script will append all of the Vendor scripts to the body of the document and then stage a listener to listen for a user clicking the ccpa-delete button.  When the user clicks that button, the handler function will call the `'performDeletion'` Command on the `__uspapi` function.
+
+```JavaScript
+
+// Add all Vendor scripts; this is just an array of string sources
+vendorDeleteScriptSources.forEach((vendorDeleteScriptSource) => {
+
+  const scriptElement = document.createElement("script");
+  scriptElement.src = vendorDeleteScriptSource;
+
+  document.body.appendChild(scriptElement);
+
+});
+
+function onCCPADelete() {
+
+   __uspapi('performDeletion', 1);
+
 }
-```
+
+const ccpaDeleteButton = document.getElementsByClassName('ccpa-delete')[0];
+
+ccpaDeleteButton.addEventListener('click', onCCPADelete);
 
 ```
-Note: For purposes of this explanation, a "bundle id" is used for (iOS) and a "package" for (Android).
-```
 
-### Common Platform / Stores identifiers
+### Example Vendor Script
 
-These identifiers can be used for the "platform" field where applicable. Otherwise, the platform field can include an arbitrary value.
+Below is an example script demonstrating how a vendor script can properly handle receiving the data deletion directive request from the consumer.
 
-<table>
-  <tr>
-   <td>Android Google Play Store
-   </td>
-   <td>android-play-store
-   </td>
-  </tr>
-  <tr>
-   <td>Android Amazon Store
-   </td>
-   <td>android-amazon-store
-   </td>
-  </tr>
-  <tr>
-   <td>iOS App Store
-   </td>
-   <td>ios-app-store
-   </td>
-  </tr>
-  <tr>
-   <td>Samsung App Store
-   </td>
-   <td>samsung-app-store
-   </td>
-  </tr>
-  <tr>
-   <td>Huawei app store
-   </td>
-   <td>huawei-app-store
-   </td>
-  </tr>
-  <tr>
-   <td>Sony apps
-   </td>
-   <td>sony-app-store
-   </td>
-  </tr>
-  <tr>
-   <td>LG smartworld
-   </td>
-   <td>lg-app-store
-   </td>
-  </tr>
-</table>
+```JavaScript
 
+(win => {
 
-## Example Implementation
+  /**
+   * The details of this function will be proprietary to each Vendor.
+   */
+  const deletePersonalData = () => {
 
-Publisher site setup:
+    //... do some proprietary deletion work …
 
-```
-<html>
-  <head>
-    <script>
-      //API provided by the publisher or CMP:
-      function uspapi_addFrame()
-      {
-       if(!window.frames['__uspapiLocator'])
-       {
-        if(document.body)
-        {
-         var i = document.createElement('iframe');
-         i.style.cssText = 'display:none';
-         i.name = '__uspapiLocator';
-         document.body.appendChild(i);
+  }
+  const command = 'registerDeletion';
+  const version = 1;
+
+  /**
+   * If this script is executing at the top level then the
+   * usp api can be called directly instead of using a
+   * postMessage call.
+   */
+  if (win === win.top) {
+
+    /**
+     * note: you may want some error handling here in case,
+     * for whatever reason, the __usapi doesn't exist.
+     */
+    win.__uspapi(command, version, deletePersonalData);
+
+  } else {
+
+    /**
+     * Because this script is operating in an iframe,
+     * postMessage will need to be used to register the
+     * deletePersonalData function.
+     */
+
+    let uspapiFrame;
+    let frame = win;
+
+    /**
+     * Starting with the current Window, search up each
+     * parent frame until the frame with the name
+     * '__uspapiLocator' is found or there are no more
+     * parent frames.
+     */
+    while (frame) {
+
+      try {
+
+        // this throws an error if it's undefined
+        if (frame.frames['__uspapiLocator']) {
+
+          // found
+          uspapiFrame = frame;
+          break;
+
         }
-        else
-        {
-         window.setTimeout('uspapi_addFrame()', 10);
-        }
-       }
+
+      } catch (ignore) {}
+
+      if (frame === win.top) {
+
+        // there are no more parents
+        break;
+
       }
-      
-      function uspapi_stub()
-      {
-       var b = arguments;
-       __uspapi.a = __uspapi.a || [];
-       if(!b.length)
-       {
-        return __uspapi.a;
-       }
-       else
-       {
-        __uspapi.a.push([].slice.apply(b));
-       }
-      }
-      
-      function uspapi_msghandler(event)
-      {
-       var msgIsString = typeof event.data === 'string';
-       try
-       {
-        var json = msgIsString ? JSON.parse(event.data) : event.data;
-       }
-       catch(e)
-       {
-        var json = null;
-       }
-       if(typeof (json) === 'object' && json !== null && '__uspapiCall' in json)
-       {
-        var i = json.__uspapiCall;
-        window.__uspapi(i.command, i.version, function (retValue, success) 
-        {
-         var returnMsg = {
-         '__uspapiReturn': {
-          'returnValue': retValue,
-          'success'    : success,
-          'callId'     : i.callId
-          }
-         };
-         event.source.postMessage(msgIsString ? JSON.stringify(returnMsg) : returnMsg, '*');
-        }, i.parameter);
-       }
-      }
-      
-      uspapi_addFrame();
-      if(!('__uspapi' in window) || 
-         (typeof (window['__uspapi']) !== 'function' && 
-          typeof (window['__uspapi']) !== 'object' && 
-          (typeof (window['__uspapi']) === 'undefined' || 
-           window['__uspapi'] !== null)))
-      {
-       window['__uspapi'] = uspapi_stub;
-       window['__uspapi'].msgHandler = uspapi_msghandler;
-       if(window.addEventListener)
-       {
-        window.addEventListener('message', uspapi_msghandler, false);
-       }
-       else
-       {
-        window.attachEvent('onmessage', uspapi_msghandler);
-       }
-      }
-    </script>
-    <!-- include the vendor deletion scripts into the page: -->
-    <script src="https://vendorx.com/ccpa-delete-function.js"></script>
-  </head>
-  <body>
-    <button id="ccpa-delete">Delete my personal data</button>
-    <script>
-      document.getElementById('ccpa-delete').addEventListener('click', function ()
-      {
-       __uspapi('performDeletion', 1, null);
+
+      // go up
+      frame = frame.parent;
+
+    }
+
+    if (uspapiFrame) {
+
+      /**
+       * The frame containing the __uspapi api has been
+       * discovered, but because of this script is
+       * executing within and iframe, it can not access
+       * the method directly and so it needs to use the
+       * postMessage method defined in the USP API spec.
+       *
+       * First a listener needs to be set up to listen
+       * for the callback, then the postMessage call
+       * will need to be executed on the frame that
+       * contains the __uspapi function.
+       */
+      win.addEventListener('message', () => {
+
+        let json = {};
+
+        try {
+
+          /**
+           * Because this is somewhat of an "open
+           * channel" all messages will be received
+           * not all will be JSON and so this part is
+           * wrapped in a try/catch and will ignore
+           * any errors in parsing
+           */
+          json = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+
+        } catch (ignore) {}
+
+        if (json.__tcfapiReturn) {
+
+          // should be executed at window scope
+          deletePersonalData();
+
+        } // else this is some message we don't recognize
+
       }, false);
-    </script>
-  </body>
-</html>
-```
 
-Vendor script (at `https://vendorx.com/ccpa-delete-function.js`)
+      uspapiFrame.postMessage({
+        __uspapiCall: {
+          command: command,
+          version: version,
+          callId: 1
+        }
+      }, '*');
 
-```
-// find the __uspapi frame
-var f = window;
-var cmpFrame;
-var cmpCallbacks = {};
-while (!cmpFrame) {
-  try {
-    if (f.frames['__uspapiLocator']) {
-      cmpFrame = f;
+    } else {
+
+      // Error, no way to call the uspapi from this iframe...
+
     }
-  } catch (e) {}
-  if (f === window.top) {
-    break;
-  }
-  f = f.parent;
-}
-
-/* Set up a __uspapi function to do the postMessage and
-stash the callback.
-This function behaves (from the caller's perspective)
-identically to the in-frame __uspapi call */
-window.__uspapi = function(cmd, ver, callback, param) {
-  if (!cmpFrame) {
-    callback({
-      msg: '__uspapi not found'
-    }, false);
-    return;
   }
 
-  var callId = Math.random() + '';
-  var msg = {
-    __uspapiCall: {
-      command: cmd,
-      parameter: param,
-      version: ver,
-      callId: callId
-    }
-  };
-  cmpCallbacks[callId] = callback;
-  cmpFrame.postMessage(msg, '*');
-};
-
-window.addEventListener('message', function(event) {
-  var json = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-  if (json.__uspapiReturn) {
-    var i = json.__uspapiReturn;
-    cmpCallbacks[i.callId](i.returnValue, i.success);
-    delete cmpCallbacks[i.callId];
-  }
-}, false);
-
-
-function vendorXDeletion() {
-  //... do some deletion work …
-  return;
-}
-
-__uspapi('registerDeletion', 1, vendorXDeletion);
+}(window));
 
 ```
