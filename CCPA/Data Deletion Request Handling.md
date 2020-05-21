@@ -317,14 +317,13 @@ if(!('__uspapi' in window)){
 		delete cmpCallbacks[i.callId];
 	  }
 	}, false);
-
-
-	function vendorXDeletion() {
-	  //... do some deletion work …
-	  return;
-	}
-
-	__uspapi('registerDeletion', 1, vendorXDeletion);
 }
+
+function vendorXDeletion() {
+  //... do some deletion work …
+  return;
+}
+
+__uspapi('registerDeletion', 1, vendorXDeletion);
 
 ```
