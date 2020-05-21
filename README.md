@@ -12,6 +12,7 @@ More information about the Framework is available at https://iab.com/guidelines/
 - [US Privacy String](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/US%20Privacy%20String.md)
 - [USP API](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/USP%20API.md)
 - [OpenRTB Extension for US Privacy](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/OpenRTB%20Extension%20for%20USPrivacy.md)
+- [Data Deletion Request Handling](https://github.com/InteractiveAdvertisingBureau/USPrivacy/blob/master/CCPA/Data%20Deletion%20Request%20Handling.md)
 - [CCPA reference implementation](https://github.com/InteractiveAdvertisingBureau/CCPA-reference-code)
 
 
