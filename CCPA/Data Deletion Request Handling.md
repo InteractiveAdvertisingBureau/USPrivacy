@@ -268,61 +268,63 @@ Vendor script (at `https://vendorx.com/ccpa-delete-function.js`)
 
 ```
 // find the __uspapi frame
-var f = window;
-var cmpFrame;
-var cmpCallbacks = {};
-while (!cmpFrame) {
-  try {
-    if (f.frames['__uspapiLocator']) {
-      cmpFrame = f;
-    }
-  } catch (e) {}
-  if (f === window.top) {
-    break;
-  }
-  f = f.parent;
+if(!('__uspapi' in window)){
+	var f = window;
+	var cmpFrame;
+	var cmpCallbacks = {};
+	while (!cmpFrame) {
+	  try {
+		if (f.frames['__uspapiLocator']) {
+		  cmpFrame = f;
+		}
+	  } catch (e) {}
+	  if (f === window.top) {
+		break;
+	  }
+	  f = f.parent;
+	}
+
+	/* Set up a __uspapi function to do the postMessage and
+	stash the callback.
+	This function behaves (from the caller's perspective)
+	identically to the in-frame __uspapi call */
+	window.__uspapi = function(cmd, ver, callback, param) {
+	  if (!cmpFrame) {
+		callback({
+		  msg: '__uspapi not found'
+		}, false);
+		return;
+	  }
+
+	  var callId = Math.random() + '';
+	  var msg = {
+		__uspapiCall: {
+		  command: cmd,
+		  parameter: param,
+		  version: ver,
+		  callId: callId
+		}
+	  };
+	  cmpCallbacks[callId] = callback;
+	  cmpFrame.postMessage(msg, '*');
+	};
+
+	window.addEventListener('message', function(event) {
+	  var json = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+	  if (json.__uspapiReturn) {
+		var i = json.__uspapiReturn;
+		cmpCallbacks[i.callId](i.returnValue, i.success);
+		delete cmpCallbacks[i.callId];
+	  }
+	}, false);
+
+
+	function vendorXDeletion() {
+	  //... do some deletion work …
+	  return;
+	}
+
+	__uspapi('registerDeletion', 1, vendorXDeletion);
 }
-
-/* Set up a __uspapi function to do the postMessage and
-stash the callback.
-This function behaves (from the caller's perspective)
-identically to the in-frame __uspapi call */
-window.__uspapi = function(cmd, ver, callback, param) {
-  if (!cmpFrame) {
-    callback({
-      msg: '__uspapi not found'
-    }, false);
-    return;
-  }
-
-  var callId = Math.random() + '';
-  var msg = {
-    __uspapiCall: {
-      command: cmd,
-      parameter: param,
-      version: ver,
-      callId: callId
-    }
-  };
-  cmpCallbacks[callId] = callback;
-  cmpFrame.postMessage(msg, '*');
-};
-
-window.addEventListener('message', function(event) {
-  var json = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-  if (json.__uspapiReturn) {
-    var i = json.__uspapiReturn;
-    cmpCallbacks[i.callId](i.returnValue, i.success);
-    delete cmpCallbacks[i.callId];
-  }
-}, false);
-
-
-function vendorXDeletion() {
-  //... do some deletion work …
-  return;
-}
-
-__uspapi('registerDeletion', 1, vendorXDeletion);
 
 ```
