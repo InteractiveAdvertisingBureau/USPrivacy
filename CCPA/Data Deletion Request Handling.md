@@ -142,16 +142,17 @@ Below is an example script demonstrating how a vendor script can properly handle
 
 ```JavaScript
 
-(win => {
+((win) => {
 
   /**
    * The details of this function will be proprietary to each Vendor.
    */
   const deletePersonalData = () => {
 
-    //... do some proprietary deletion work …
+    // ... do some proprietary deletion work …
 
-  }
+  };
+
   const command = 'registerDeletion';
   const version = 1;
 
@@ -256,8 +257,8 @@ Below is an example script demonstrating how a vendor script can properly handle
         __uspapiCall: {
           command: command,
           version: version,
-          callId: 1
-        }
+          callId: 1,
+        },
       }, '*');
 
     } else {
@@ -265,8 +266,10 @@ Below is an example script demonstrating how a vendor script can properly handle
       // Error, no way to call the uspapi from this iframe...
 
     }
+
   }
 
-}(window));
+})(window);
+
 
 ```
