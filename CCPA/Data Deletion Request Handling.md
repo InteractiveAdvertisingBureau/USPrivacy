@@ -271,5 +271,4 @@ Below is an example script demonstrating how a vendor script can properly handle
 
 })(window);
 
-
 ```
