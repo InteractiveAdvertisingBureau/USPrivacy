@@ -21,7 +21,7 @@ Every Vendor that provides a service for a Publisher must host a JavaScript file
 A Data Deletion Request is accomplished by the [`registerDeletion`](#registerdeletion) and [`performDeletion`](#performdeletion) Commands invoked on the [USP API](./USP%20API.md).
 
  * [`registerDeletion`](#registerdeletion) is executed by the [Vendor-hosted script](#how-it-works) upon load (immediately), which registers the Vendor-proprietary callback to be invoked when the [`performDeletion`](#performdeletion) is invoked.
- * [`performDeletion`](#performdeletion) is staged to execute by a Publisher upon a consumer taking action to requst personal data be deleted.  The [USP API](./USP%20API.md) will call all Vendor callbacks registered with the [`registerDeletion`](#registerdeletion) Command.
+ * [`performDeletion`](#performdeletion) is staged to execute by a Publisher upon a consumer taking action to request personal data be deleted.  The [USP API](./USP%20API.md) will call all Vendor callbacks registered with the [`registerDeletion`](#registerdeletion) Command.
 
 ### `registerDeletion`
 
