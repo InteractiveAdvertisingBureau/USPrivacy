@@ -2,7 +2,7 @@
 
 ## Summary
 
-This specification defines the Data Deletion Request (DDR), which is the mechanism by which the IAB CCPA Compliance Framework complies with Section 1798.105(c) of the California Consumer Protection Act (CCPA) which states _"[a] business that receives a verifiable consumer request from a consumer to delete the consumer's personal information [shall] . . direct any service providers to delete the consumer's personal information from their records."_  The DDR is a technical contract between a Publisher and Vendors in order to enable a consumer on a Publisher's digital property to direct Vendors to delete the comsumer's personal information from their records.  As stated, the DDR exists primarily to comply with CCPA but may be used for deletion requests outside the domain of CCPA governance.
+This specification defines the Data Deletion Request (DDR), which is the mechanism by which the IAB CCPA Compliance Framework complies with Section 1798.105(c) of the California Consumer Protection Act (CCPA) which states _"[a] business that receives a verifiable consumer request from a consumer to delete the consumer's personal information [shall] . . direct any service providers to delete the consumer's personal information from their records."_  The DDR is a technical contract between a Publisher and Vendors in order to enable a consumer on a Publisher's digital property to direct Vendors to delete the consumer's personal information from their records.  As stated, the DDR exists primarily to comply with CCPA but may be used for deletion requests outside the domain of CCPA governance.
 
 The technical solution detailed in this specification provides the means to signal consumer requests for data deletion. Companies supporting the US Privacy Framework (i.e., service providers) will respond to the signals by deleting the consumer's relevant personal data to the extent required by CCPA. The process for deletion depends on the company's technology and operational practices in place. _How_ a Vendor deletes a consumer's personal data is out of scope for this specification.
 
@@ -47,7 +47,7 @@ __uspapi("registerDeletion", version, (identifiers) => {
 
 ### `performDeletion`
 
-The Publisher, or its CMP where applicable, invokes this Command when a consumer delete action to initiate the deletion process occurs. The Command invokes all callbacks registered via the [`registerDeletion`](#registerdeletion) Command in no specified order.
+The Publisher, or its CMP where applicable, invokes this Command when a consumer action to initiate the deletion process occurs. The Command invokes all callbacks registered via the [`registerDeletion`](#registerdeletion) Command in no specified order.
 
 | Argument Name | Type | Optional | Value |
 | :-- | :-- | :-- | :-- |
