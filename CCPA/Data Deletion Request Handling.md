@@ -47,7 +47,7 @@ __uspapi("registerDeletion", version, (identifiers) => {
 
 ### `performDeletion`
 
-The Publisher, or its CMP where applicable, invokes this Command when a consumer delete action to initiate the deletion process occurs. The Command invokes all callbacks registered via the [`registerDeletion`](#registerdeletion) Command in no specified order.
+The Publisher, or its CMP where applicable, invokes this Command when a consumer action to initiate the deletion process occurs. The Command invokes all callbacks registered via the [`registerDeletion`](#registerdeletion) Command in no specified order.
 
 | Argument Name | Type | Optional | Value |
 | :-- | :-- | :-- | :-- |
