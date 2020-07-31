@@ -96,7 +96,7 @@ The [`performDeletion`](#performdeletion) Command may be invoked with an optiona
 
 The following is the list of platform identifiers.
 
-| Patform Name | Store | Identifier |
+| Platform Name | Store | Identifier |
 | :-- | :-- | :-- |
 | Android | Google Play Store | `"google"` |
 | Android | Amazon Store | `"amazon"` |
