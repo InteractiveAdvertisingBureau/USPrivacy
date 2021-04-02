@@ -120,8 +120,8 @@ The US Privacy string consists of the following components.
 | String Component | Expected Values | Definition |
 |:--|:--|:--|
 | Specification Version | <p>**Number**</p><p>(1 char in string)</p> | The version of this string specification used to encode the string |
-| Explicit Notice/Opportunity to Opt Out | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable)</p> | Has explicit notice been provided as required by 1798.115(d) of the CCPA and the opportunity to opt out of the sale of their data pursuant to 1798.120 and 1798.135 of the CCPA |
-| Opt-Out Sale | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable. For use ONLY when CCPA does not apply.)</p> | Has user opted-out of the sale of his or her personal information pursuant to 1798.120 and 1798. **If CCPA applies, only Y (yes) or N (no) can be used.** |
+| Notice/Opportunity to Opt Out | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable)</p> | Have both of the following been provided (i) notice pursuant to 1798.100(b) of the CCPA and (ii) the opportunity to opt out of the "sale" of personal information pursuant to 1798.120 and 1798.135 of the CCPA |
+| Opt-Out Sale | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable. For use ONLY when CCPA does not apply.)</p> | Has user opted-out of the sale of his or her personal information pursuant to 1798.120 and 1798.135 of the CCPA? **If CCPA applies, only Y (yes) or N (no) can be used.** |
 | LSPA Covered Transaction | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable)</p> | Publisher is a signatory to the IAB Limited Service Provider Agreement(LSPA) and the publisher declares that the transaction is covered as a “Covered Opt Out Transaction” or a “Non Opt Out Transaction” as those terms are defined in the Agreement. |
 
 
