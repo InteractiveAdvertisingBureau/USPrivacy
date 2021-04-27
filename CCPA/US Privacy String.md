@@ -36,7 +36,7 @@ As the concern for consumer privacy grows, regional governance in the US may inc
 
 If US privacy regulations apply, digital property owners (websites, apps, or other media platforms) are expected to provide consumer privacy signals to all parties that intend to exchange data on a given transaction (such as displaying an impression). Parties receiving the signal use the information to determine whether they’re allowed to process the consumer’s personal data.
 
-To facilitate CCPA compliance, version 1 of the US Privacy String signals whether or not the regulation applies in a given transaction, whether “explicit notice” was given, and what choice the consumer made (if any).
+To facilitate CCPA compliance, version 1 of the US Privacy String signals whether or not the regulation applies in a given transaction, whether “notice” was given, and what choice the consumer made (if any).
 
 The String format enables digital properties to store and maintain a consumer’s privacy preference and transmit that data to relevant parties. Parties receiving the data are expected to act on it in accordance with any relevant governance.
 
@@ -96,7 +96,7 @@ More information about the Framework is available at [iab.com/guidelines/ccpa-fr
 Version 1 of the US Privacy String supports CCPA Compliance, which contains the following information:
 
 1. **Version:** the version number of the US Privacy String provided.
-2. **Status of notice given:** whether the digital property provided “explicit notice and opportunity to opt-out of sale of data.”
+2. **Status of notice given:** whether the digital property provided “notice and opportunity to opt-out of sale of data.”
 3. **User preference:** whether the user has opted out of the sale of their personal data.
 4. **LSPA coverage:** whether the digital property is operating under a signed Limited Service Provider Agreement (LSPA) with the IAB.
 
@@ -125,7 +125,7 @@ The US Privacy string consists of the following components.
 | LSPA Covered Transaction | <p>**ENUM**</p><p>(**N** = No, **Y** = Yes, **-** = Not Applicable)</p> | Publisher is a signatory to the IAB Limited Service Provider Agreement(LSPA) and the publisher declares that the transaction is covered as a “Covered Opt Out Transaction” or a “Non Opt Out Transaction” as those terms are defined in the Agreement. |
 
 
-In situations where the digital property has determined that the consumer does not fall within a US Privacy jurisdiction (such as CCPA), the digital property may signal this with hyphens in the second, third, and fourth character positions in the following manner: “1---”. Otherwise, when signals are present, the consumer falls within a US Privacy jurisdiction. The hyphen character may also be used to signal an unknown state in the second (Explicit Notice) and fourth (LSPA Covered Transaction) character positions. <p> **NOTE:** The third character position (Opt-Out Sale) cannot be unknown (must never include a hyphen) when CCPA applies.</p>
+In situations where the digital property has determined that the consumer does not fall within a US Privacy jurisdiction (such as CCPA), the digital property may signal this with hyphens in the second, third, and fourth character positions in the following manner: “1---”. Otherwise, when signals are present, the consumer falls within a US Privacy jurisdiction. The hyphen character may also be used to signal an unknown state in the second (Notice) and fourth (LSPA Covered Transaction) character positions. <p> **NOTE:** The third character position (Opt-Out Sale) cannot be unknown (must never include a hyphen) when CCPA applies.</p>
 
 ### Examples
 
@@ -134,7 +134,7 @@ The following examples provide a sample US Privacy String that represents the st
 **Example 1 meets the following conditions:**
 
 * Version 1 of the US Privacy string is being used. (1) 
-* The digital property has provided explicit user notice. (Y) 
+* The digital property has provided user notice. (Y) 
 * The user has NOT made a choice to opt out of sale. (N)
 * The digital property is not operating under the Limited Service Provider Agreement. (N)
 
@@ -144,7 +144,7 @@ The following examples provide a sample US Privacy String that represents the st
 **Example 2 meets the following conditions:**
 
 * Version 1 of the US Privacy string is being used. (1) 
-* The digital property has NOT provided explicit user notice. (N) 
+* The digital property has NOT provided user notice. (N) 
 * The user has made a choice to opt out of sale. (Y)
 * The digital property is not operating under the Limited Service Provider Agreement. (N)
 
@@ -156,7 +156,7 @@ The following examples provide a sample US Privacy String that represents the st
 In this example the digital property has asked a vendor to create a US Privacy String on their behalf, knowing only whether the user has opted of sale of personal data.
 
 * Version 1 of the US Privacy string is being used. (1) 
-* The status of provided explicit user notice is unknown. (-) 
+* The status of provided user notice is unknown. (-) 
 * The user has made a choice to opt out of sale. (Y)
 * The status of operating under the Limited Service Provider Agreement is unknown. (-)
 
