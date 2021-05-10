@@ -10,6 +10,7 @@ The technical solution detailed in this specification provides the means to sign
 ### Relevant Documents
 
 [Limited Service Provider Agreement](https://www.iabprivacy.com/lspa-2019-12.pdf) (12-2-19 version)
+[First Amended Limited Service Provider Agreement](https://www.iabprivacy.com/firstamendedlspa.pdf) (06-7-21 version)
 
 
 ## How it Works
