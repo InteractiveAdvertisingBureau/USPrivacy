@@ -24,6 +24,7 @@
 
 | Date | Version | Comments |
 | :-- | :-- | :-- |
+| May 2021 | 1.2 | Update notice/opportunity to opt out definition. |
 | March 2020 | 1.0 | Clarification on accepted uses of "-". |
 | November 2019 | 1.0 | Published final public version. Added support for Limited Service Provider Agreement (LSPA) signal. |
 | October 2019 | 1.0 | Draft for public comment. Version 1 ONLY supports CCPA compliance. |
