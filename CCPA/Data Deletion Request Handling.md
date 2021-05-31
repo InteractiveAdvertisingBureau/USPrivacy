@@ -244,7 +244,7 @@ Below is an example script demonstrating how a vendor script can properly handle
 
         } catch (ignore) {}
 
-        if (json.__tcfapiReturn) {
+        if (json.__uspapiReturn) {
 
           // should be executed at window scope
           deletePersonalData();
