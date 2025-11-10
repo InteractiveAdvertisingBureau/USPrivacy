@@ -153,7 +153,7 @@ The following examples provide a sample US Privacy String that represents the st
 **1NYN**
 
 
-**Example 3: Digital property ousources string creation**
+**Example 3: Digital property outsources string creation**
 
 In this example the digital property has asked a vendor to create a US Privacy String on their behalf, knowing only whether the user has opted of sale of personal data.
 
