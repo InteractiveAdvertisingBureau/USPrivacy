@@ -110,7 +110,7 @@ To support sending and receiving of the US Privacy String within the US API, the
 
 As a baseline, digital properties must create a US Privacy String and make it available to vendors using this API. The created String communicates signals as compliant with the regulation that applies. 
 
-For example, in the case of CCPA, the String communicates wether CCPA applies in the given transaction, whether explicit notice was given to the consumer, the consumer's choice on opt-out of sale of data, and whether the transaction is operating under the IAB Limited Service Provider Agreement (LSPA).
+For example, in the case of CCPA, the String communicates whether CCPA applies in the given transaction, whether explicit notice was given to the consumer, the consumer's choice on opt-out of sale of data, and whether the transaction is operating under the IAB Limited Service Provider Agreement (LSPA).
 
 ## Where should the string be stored?
 
